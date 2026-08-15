@@ -25,6 +25,16 @@
             <li><%= item.country %></li>
             <li><%= item.price %>/-</li>
         </ul> </a>
+        <form method="POST" action="/home/<%=item._id%>/edit?_method=PATCH">
+            <button>
+                Edit
+            </button>
+        </form>
+        <form method="POST" action="/home/<%=item._id%>/Delete?_method=DELETE">
+            <button>
+                Delete
+            </button>
+        </form>
     <%}%>
 </ul>
     
