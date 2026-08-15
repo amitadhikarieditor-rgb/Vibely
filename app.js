@@ -8,6 +8,7 @@ const listing = require("./models/model.js");
 app.use(express.urlencoded({extended:true}));
 app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
+app.use(methodOverride("_method"));
 
 
 async function main(){
@@ -52,7 +53,18 @@ app.post("/home/new", async (req,res)=>{
     res.redirect("/home");
 });
 
+app.patch("/home/:id/edit", async (req,res)=>{
+     const {title,description,price,location,country,image} = req.body;
+     const id = req.params.id;
+     const edit = await listing.findByIdAndUpdate(id,req.body, {returnDocument: "after"});
+     res.render("listings/update.ejs", {edit});
+});
 
+app.delete("/home/:id/delete", async (req,res)=>{
+    const id=req.params.id;
+    const Del = await listing.findByIdAndDelete(id,);
+    res.redirect("/home");
+});
 
 // app.get("/listing", async(req,res)=>{
 //     const list= new listing(
