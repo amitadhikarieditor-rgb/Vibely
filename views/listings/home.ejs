@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibely-Book & list your preference today</title>
+</head>
+<body>
+    <h1>
+        Hey! Welcome to Vibely
+    </h1>
+    <form method="get" Action="/home/new">
+        <button>
+            Create new list
+        </button>
+    </form>
+<ul>
+    <% for(let item of items){%>
+        <ul>
+            <a href="/home/<%=item._id%>/show">
+            <li><%= item.title %></li>
+            <li><%= item.description %></li>
+            <li><img class="img" src="<%= item.image.url %>" alt="<%= item.image %>"></li>
+            <li><%= item.location %></li>
+            <li><%= item.country %></li>
+            <li><%= item.price %>/-</li>
+        </ul> </a>
+    <%}%>
+</ul>
+    
+</body>
+</html>
+
