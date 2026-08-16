@@ -20,10 +20,10 @@
             <a href="/home/<%=item._id%>/show">
             <li><%= item.title %></li>
             <li><%= item.description %></li>
-            <li><img class="img" src="<%= item.image.url %>" alt="<%= item.image %>"></li>
+            <li><img class="img" style="width: 400px; height:400px ;" src="<%= item.image.url %>" alt="<%= item.image %>"></li>
             <li><%= item.location %></li>
             <li><%= item.country %></li>
-            <li><%= item.price %>/-</li>
+            <li> &#8377;<%= item.price.toLocaleString("en-IN") %>/-</li>
         </ul> </a>
         <form method="POST" action="/home/<%=item._id%>/edit?_method=PATCH">
             <button>
