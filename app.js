@@ -4,11 +4,13 @@ const path = require("path");
 const mongoose = require("mongoose");
 const methodOverride= require("method-override");
 const listing = require("./models/model.js"); 
+const ejsMate = require("ejs-mate");
 
 app.use(express.urlencoded({extended:true}));
 app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
 app.use(methodOverride("_method"));
+app.engine("ejs",ejsMate);
 
 
 async function main(){
@@ -27,7 +29,7 @@ app.listen(3030, (req,res)=>{
 
 app.get("/", (req,res)=>{
     res.send("khada ho rha hai server");
-});
+}); 
 
 app.get("/home",async (req,res)=>{
     const items = await listing.find({});

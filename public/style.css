@@ -1,0 +1,98 @@
+*{
+    color:#030303;
+}
+.body{
+    background-color: #fdfdfd;
+}
+.fa-uncharted {
+    color: #00ADB5;
+}
+ .navbar{
+    background-color: #ffffff;
+ }
+ .f-area{
+    display:flex;
+    flex-direction: column;
+    justify-content: top;
+    align-items: center;
+    background-color: rgb(205, 179, 179);
+    height:10rem;
+ }
+
+ .social-area{
+    display:flex;
+    align-items: center;
+    gap:4px;
+    font-size: 20px;
+    margin-top: 10px;
+ }
+ .f-name{
+    display:flex;
+    align-items: center;
+    gap:4px;
+    font-size: 20px;
+    margin-top: 10px;
+    opacity:0.6;
+ }
+
+.f-name:hover{
+    opacity:1;
+}
+
+.f-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    font-size: 15px;
+    margin-top: 2px;
+}
+
+.f-link a{
+    color: rgb(248, 248, 248) !important;
+    text-decoration: none !important;
+    opacity:0.5;
+}
+.f-link a:hover{
+    opacity:1;
+    text-decoration: underline !important;
+} 
+.navbar-nav{
+    margin-left:2rem;
+}
+.nav-link{
+    margin-left:5rem;
+    font-weight: 1000;
+}
+
+.social-area i{
+    opacity:0.5;
+}
+
+.social-area i:hover{
+    opacity: 100%;
+}
+.card{
+    width:100%;
+    height:100%;
+    border: none !important;
+    margin-top: 20px;
+}
+.card-img-top{
+    height:450px;
+    object-fit: cover;
+    border-radius:1rem;
+}
+.create-btn{
+    margin-left: 20rem;
+}
+
+.card-body a{
+    color:#030303;
+    text-decoration: none;
+}
+
+.card-img-top:hover{
+    opacity:0.5;
+    transition: 0.29s;
+}
