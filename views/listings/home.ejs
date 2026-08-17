@@ -8,8 +8,7 @@
   
             <a href="/home/<%=item._id%>/show">
             <img class="card-img-top" src="<%= item.image.url %>" alt="<%= item.image %>">
-            <%= item.title %>
-             <br/>
+            <h3><%= item.title %></h3>
             <%= item.description %>
             <br/>
             <%= item.location %>
@@ -20,12 +19,12 @@
         </a>
     
     <form method="POST" action="/home/<%=item._id%>/edit?_method=PATCH">
-    <button class="btn btn-danger" type="submit">Edit</button>
+    <button class="btn btn-warning" type="submit">Edit</button>
 </form>
 </form>
 <br/>
         <form method="POST" action="/home/<%=item._id%>/Delete?_method=DELETE">
-            <button class="btn btn-warning" type="submit">Delete</button>
+            <button class="btn btn-danger" type="submit">Delete</button>
         </form>
   </div>
 </div>

@@ -84,6 +84,18 @@ app.delete("/home/:id/delete", async (req,res)=>{
 // });
 
 
+app.get("/home/search",async(req,res)=>{
+    let search = String(req.query.q);
+    const conditions =[{title:{$regex:search, $options:"i"}},
+        {country:{$regex:search, $options:"i"}},
+        {location:{$regex:search, $options:"i"}},
+        {description:{$regex:search, $options:"i"}}];
 
+    if(!isNaN(Number(search))){
+        conditions.push({price:Number(search)});
+    };
+    const card= await listing.find({$or:conditions})
+    res.render("listings/search.ejs", {card});
+});
 
 

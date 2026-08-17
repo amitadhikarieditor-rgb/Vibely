@@ -1,0 +1,32 @@
+  <% layout("layouts/boilerplate") %>
+
+<div class="row g-0 item-container">
+         <% for(let item of card) { %>
+    <div class="col-12 col-sm-6 col-lg-4">
+    <div class="card">
+    <div class="card-body">
+
+        <a href="/home/<%=item._id%>/show">
+            <h1><%= item.title %></h1>
+        <%= item.description %>
+        <img class="card-img-top" src="<%= item.image.url %>">
+         <%= item.location %>
+         <br/>
+         <%= item.country %>
+         <br/>
+        ₹<%= item.price %>/-
+        <br/>
+        </a>
+      </div>
+    </div>
+    </div>
+  <% } %>
+
+    </div>
+
+    <form method="GET" action="/home" >
+        <button>
+            Go back to home
+        </button>
+    </form>
+    </div>
