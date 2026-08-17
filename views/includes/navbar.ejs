@@ -5,10 +5,20 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
+      <div class="navbar-nav w-100">
         <a class="nav-link active" aria-current="page" href="/">Home</a>
         <a class="nav-link" href="/home">Explore All</a>
         <a class="nav-link" href="/home/new">Add Yours</a>
+
+        <form method="GET" action="/home/search" class="d-flex ms-auto me-5" role="search">
+        <input class="form-control me-3" name="q" type="search" placeholder="Search" aria-label="Search"/>
+
+        <button class="btn btn-danger" type="submit">Search</button>
+      </form>
+
+        <div class="ms-auto ">
+          <a href="/" class="btn btn-outline-danger">Sgin Up</a>
+        </div>
       </div>
     </div>
   </div>
