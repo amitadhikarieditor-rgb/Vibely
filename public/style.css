@@ -3,20 +3,23 @@
 }
 .body{
     background-color: #fdfdfd;
+    min-height:100vh;
 }
 .fa-uncharted {
-    color: #00ADB5;
+    color: #01bbbb;
 }
  .navbar{
-    background-color: #fcfafa;
+    background-color: #ffffff;
  }
  .f-area{
+    z-index: 1;
     display:flex;
     flex-direction: column;
     justify-content: top;
     align-items: center;
     background-color: rgb(183, 180, 180);
-    height:9rem;
+    height:10rem;
+    margin-top: auto;
  }
 
  .social-area{
@@ -117,5 +120,14 @@ label{
 
 .h{
     text-align: center;
+}
+
+.c{
+    border:1px solid black;
+    border-radius:10px ;
+    padding: 20px;
+}
+.search-btn{
+    margin-right:30px
 }
 

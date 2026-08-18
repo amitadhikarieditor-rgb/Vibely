@@ -1,28 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>show</title>
-</head>
-<body>
-    <h3>
-        <%= item.title %>
-    </h3>
+<%-layout("layouts/boilerplate.ejs")%>
 
-    <ul>
-        <li><%= item.title %></li>
-         <li><%= item.description %></li>
-          <li><img class="img" src="<%= item.image.url %>" alt="<%= item.image %>"></li>
-           <li><%= item.location %></li>
-            <li><%= item.country %></li>
-            <li><%= item.price %>/-</li>
-    </ul>
+   <div class="d-flex justify-content-center">
+  <div class="c-area" style="width: 24rem;">
+    <h3><%= item.title %></h3>
 
-    <form method="GET" action="/home" >
-        <button>
-            Go back to home
-        </button>
-    </form>
-</body>
-</html>
+    <div class="c">
+      <img class="img card-img-top" style="height:350px" src="<%= item.image.url %>">
+
+      <p><%= item.description %></p>
+      <p><%= item.location %></p>
+      <p><%= item.country %></p>
+      <p>₹<%= item.price %>/-</p>
+
+      <!-- <form method="GET" action="/home"> -->
+
+        <a href="/home" class="btn btn-danger"
+        >Go back to home</a>
+    </div>
+  </div>
+</div>

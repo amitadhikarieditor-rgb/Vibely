@@ -1,35 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+<%-layout("layouts/boilerplate.ejs")%>;
+<div class="page" >
+    <div class="mb-2 new">
     <form method="POST" action="/home/<%=edit._id%>/edit?_method=PATCH">
-    <input placeholder="Title" name="title" type="text" value=<%=edit.title%>>
-    <br/>
-    <br/>
-    <textarea rows="5" cols="30" placeholder="Description" name="description" type="text"><%=edit.description%> </textarea>
-    <br/>
-    <br/>
-    <input placeholder="Location" name="location" type="text" value=<%=edit.location%>>
-    <br/>
-    <br/>
-    <input placeholder="Country" name="country" type="text" value=<%=edit.country%>>
-    <br/>
-    <br/>
-    <img src="<%= edit.image.url %>" width="300">
-    <input style="width:400px; height:35px;" name="image[url]" type="url" value="<%= edit.image.url %>">
-    <br/>
-    <br/>
-    <input placeholder="Price" name="price" type="number" value=<%=edit.price%>>
-    <br/>
-    <br/>
+
+    <label for="title" class="form-label">Change Title</label>
+    <input class="form-control" id="title" placeholder="Title" name="title"  type="text" value= <%=edit.title%> >
     
-        <button>
+     <label for="Description" class="form-label">Change Description</label>
+    <textarea class="form-control" id="description" rows="5" cols="30" placeholder="wanna change Description?" name="description" type="text"><%=edit.description%> </textarea>
+
+    <label for="location" class="form-label">Change The Location</label>
+    <input class="form-control" id="location" placeholder="Location" name="location" type="text" value=<%=edit.location%>>
+    
+     <label for="country" class="form-label">Change The Location</label>
+    <input class="form-control" id="country" placeholder="Country" name="country" type="text" value=<%=edit.country%>>
+    
+    <label for="image" class="form-label">Your image</label>
+
+    <img src="<%= edit.image.url %>" style="width:250px; height:250px;">
+    <input id= "image" class="form-control" name="image[url]" type="url" value="<%= edit.image.url %>">
+    
+    <label for="price" class="form-label">Change Your Price</label>
+    <input id="price" class="form-control" placeholder="Price" name="price" type="number" value=<%=edit.price%>>
+    
+        <button class="btn btn-danger">
             Save changes
         </button>
 </form>
-</body>
-</html>
+</div>
+</div>
