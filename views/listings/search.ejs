@@ -1,5 +1,7 @@
   <% layout("layouts/boilerplate") %>
-
+       <a href="/home" class="btn btn-danger back-btn">
+        Go back to home
+       </a>
 <div class="row g-0 item-container">
          <% for(let item of card) { %>
     <div class="col-12 col-sm-6 col-lg-4">
@@ -23,10 +25,4 @@
   <% } %>
 
     </div>
-
-    <form method="GET" action="/home" >
-        <button>
-            Go back to home
-        </button>
-    </form>
     </div>

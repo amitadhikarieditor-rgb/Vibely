@@ -1,0 +1,47 @@
+<%-layout("layouts/boilerplate.ejs")%>
+    <h1 class="login-h1 me=auto">
+        Welcome to the Vibely! 
+    </h1>
+    <br/>
+    <br/>
+    <div>
+         <div>
+            <form method="post" action="/home">
+                <div class="mb-2 login-area ms-auto">
+
+    <label for="Inputuser" class="form-label">Username</label>
+    <input name="username" required type="text" class="form-control w-100" id="Inputuser" aria-describedby="emailHelp">
+
+                     <label for="InputEmail1" class="form-label">Email address</label>
+                    <input name="email" required type="email" class="form-control w-100" id="InputEmail1" aria-describedby="emailHelp">
+
+                    <div class="password-area ">
+                         <label for="password" class="form-label">Password</label>
+                    <input name="password" required type="Password" class="form-control w-50 d-flex" id="password" aria-describedby="emailHelp">
+                    <button type="button" class="eye-btn d-flex" onclick="toggle()">
+                        <i class="fa-regular fa-eye d-flex"></i>
+                    </button>
+                    </div>
+<br/>
+                     <div class="mb-3 form-check">
+                       
+    <input required type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+ <br/>
+ <br/>
+ <button class="btn btn-danger" type="submit"> Get Started </button>
+ </div>
+
+</div>
+            </form>
+            
+            <script> 
+                function toggle(){
+                    let input=document.getElementById("password");
+                    input.type=input.type=== "password" ? "text" : "password";
+                }
+            </script>
+        </body>
+        </html>
+        
+        
