@@ -27,10 +27,6 @@ app.listen(3030, (req,res)=>{
     console.log("sun rha hai naa tu")
 });
 
-app.get("/", (req,res)=>{
-    res.send("khada ho rha hai server");
-}); 
-
 app.get("/home",async (req,res)=>{
     const items = await listing.find({});
     console.log("horha hai")
@@ -97,5 +93,9 @@ app.get("/home/search",async(req,res)=>{
     const card= await listing.find({$or:conditions})
     res.render("listings/search.ejs", {card});
 });
+
+app.get("/", (req,res)=>{
+    res.render("listings/login.ejs")
+}); 
 
 

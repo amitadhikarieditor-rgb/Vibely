@@ -103,9 +103,9 @@
 .new{
     /* background-color:#C9B59C ; */
     max-width: 900px;
-    /* padding: 30px; */
-    /* border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,1); */
+    padding: 30px; 
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,1);
     margin-bottom: 40px !important;
     height:750px !important;
     margin:2px auto;
@@ -130,4 +130,41 @@ label{
 .search-btn{
     margin-right:30px
 }
+.back-btn{
+     font-size: 15px !important;
+     margin-left:20px;
+     position:sticky !important;
+     top:0;
+     margin-top: 10px;
+};
 
+.login-h1{
+    margin-left:100px;
+}
+
+.password-area {
+    position: relative;
+    width: 100%;
+}
+
+.password-area .form-control {
+    width: 100% !important;
+}
+
+.eye-btn {
+    position: absolute;
+    right: 12px;
+    top: 42px;
+    border: none;
+    background: transparent;
+}
+
+.login-area{
+    max-width: 600px;
+    padding: 30px; 
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,1);
+    margin-bottom: 40px !important;
+    height:556px !important;
+    margin:2px auto;
+}
