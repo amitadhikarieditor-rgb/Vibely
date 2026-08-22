@@ -15,16 +15,16 @@
             <br/>
             <%= item.country %>
             <br/>
-             &#8377;<%= item.price.toLocaleString("en-IN") %>/-
+             &#8377;<%= item.price.toLocaleString("en-IN") %>/- night
         </a>
     
     <form method="POST" action="/home/<%=item._id%>/edit?_method=PATCH">
-    <button class="btn btn-warning" type="submit">Edit</button>
+    <button class="btn btn-dark" type="submit">Edit</button>
 </form>
 </form>
 <br/>
         <form method="POST" action="/home/<%=item._id%>/Delete?_method=DELETE">
-            <button class="btn btn-danger" type="submit">Delete</button>
+            <button class="btn btn-outline-danger" type="submit">Delete</button>
         </form>
   </div>
 </div>
@@ -32,6 +32,7 @@
 
 <%}%>
 </div>
+<br/>
     <form method="get" Action="/home/new">
         
         <a class="btn btn-outline-danger" href="/home/new">
