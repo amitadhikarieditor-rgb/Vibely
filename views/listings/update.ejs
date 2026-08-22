@@ -1,5 +1,5 @@
 <%-layout("layouts/boilerplate.ejs")%>;
-<div class="page" >
+<div class="page h-25" >
     <div class="mb-2 new">
     <form method="POST" action="/home/<%=edit._id%>/edit?_method=PATCH">
 
@@ -7,7 +7,7 @@
     <input class="form-control" id="title" placeholder="Title" name="title"  type="text" value= <%=edit.title%> >
     
      <label for="Description" class="form-label">Change Description</label>
-    <textarea class="form-control" id="description" rows="5" cols="30" placeholder="wanna change Description?" name="description" type="text"><%=edit.description%> </textarea>
+    <textarea class="form-control" id="description" rows="2" cols="30" placeholder="wanna change Description?" name="description" type="text"><%=edit.description%> </textarea>
 
     <label for="location" class="form-label">Change The Location</label>
     <input class="form-control" id="location" placeholder="Location" name="location" type="text" value=<%=edit.location%>>
@@ -23,6 +23,7 @@
     <label for="price" class="form-label">Change Your Price</label>
     <input id="price" class="form-control" placeholder="Price" name="price" type="number" value=<%=edit.price%>>
     
+    <br/>
         <button class="btn btn-danger">
             Save changes
         </button>

@@ -14,8 +14,9 @@
 
       <!-- <form method="GET" action="/home"> -->
 
-        <a href="/home" class="btn btn-danger"
-        >Go back to home</a>
+        <form method="POST" action="/home/<%=item._id%>/Delete?_method=DELETE">
+            <button class="btn btn-outline-danger" type="submit">Delete</button>
+        </form>
     </div>
   </div>
 </div>

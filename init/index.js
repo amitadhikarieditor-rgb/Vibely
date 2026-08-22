@@ -13,7 +13,6 @@ main().then((res)=>{
 });
 
 const initDb= async ()=>{
-    await listing.deleteMany({});
     await listing.insertMany(initData.data);
     console.log("dal gya bhaiiii oyeeeeee");
 }

@@ -3,18 +3,44 @@
     <h2 class="h" >
         Create a New Listing
     </h2>
-    <form method="POST" action="/home/new">
+    <form class="needs-validation" novalidate method="POST" action="/home/new">
         <div class="mb-2 new">
-            <label for="title" class="form-label">Your property's Identity</label>
-            <input class="form-control" id="title" placeholder="Title" name="title" type="text">
-    <label for="description" class="form-label">Description</label>
-    <textarea class="form-control" id="description" rows="10"  placeholder="Add Description" name="description" type="text"></textarea>
-    
-    <label for="location" class="form-label">Enter the Location</label>
-    <input class="form-control" id="location" placeholder="Location" name="location" type="text"> 
 
-    <label for="country" class="form-label">Enter the Location</label>
-    <select id="country" class="form-select" name="country">
+
+            <label for="title" class="form-label">Your property's Identity</label>
+            <input required class="form-control" id="title " placeholder="Title" name="title" type="text">
+            <div class="invalid-feedback">
+                Please enter a title.
+            </div>
+            <div class="valid-feedback">
+                title Looks Good.
+            </div>
+
+
+    <label for="description" class="form-label">Description</label>
+    <textarea required class="form-control" id="description" rows="3"  placeholder="Add Description" name="description" type="text"></textarea>
+    <div class="invalid-feedback">
+                Please enter a Description
+            </div>
+            <div class="valid-feedback">
+                 Nice.
+            </div>
+    
+
+
+    <label for="location" class="form-label">Enter the Location</label>
+    <input required class="form-control" id="location" placeholder="Location" name="location" type="text"> 
+    <div class="invalid-feedback">
+                Please enter a valid location
+            </div>
+            <div class="valid-feedback">
+                Thanks for entering
+            </div>
+
+
+
+    <label  for="country" class="form-label">Enter the country</label>
+    <select required id="country" class="form-select" name="country">
   <option>Afghanistan</option>
 <option>Albania</option>
 <option>Algeria</option>
@@ -211,15 +237,20 @@
 <option>Zambia</option>
 <option>Zimbabwe</option>
 </select>
-   
-    <label for="image" class="form-label">URL of the Image</label>
+
+    <label  for="image" class="form-label">URL of the Image</label>
     <input id="image" class="form-control" placeholder="Image" name="image[url]" type="url">
 
   
-    <label for="price" class="form-label">Description</label>
-    <input id="price" class="form-control" placeholder="Price" name="price" type="number">
+    <label for="price" class="form-label">Price</label>
+    <input required id="price" class="form-control" placeholder="Price" name="price" >
+
+
+
 <br/>
-        <button type="button" class="btn btn-danger">SAVE</button>
+
+
+        <button type="submit" class="btn btn-danger">SAVE</button>
         </div>
 </form>
 </div>
