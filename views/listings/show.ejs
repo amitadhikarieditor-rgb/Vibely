@@ -14,6 +14,11 @@
 
       <!-- <form method="GET" action="/home"> -->
 
+        <form method="POST" action="/home/<%=item._id%>/edit?_method=PATCH">
+    <button class="btn btn-dark" type="submit">Edit</button>
+</form>
+<br/>
+
         <form method="POST" action="/home/<%=item._id%>/Delete?_method=DELETE">
             <button class="btn btn-outline-danger" type="submit">Delete</button>
         </form>

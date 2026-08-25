@@ -7,6 +7,8 @@ const listing = require("./models/model.js");
 const ejsMate = require("ejs-mate");
 const wrapAsync = require("./utils/wrapsync.js");
 const expressError= require("./utils/expressError.js");
+const listingSchema=require("./joi.js");
+
 
 app.use(express.urlencoded({extended:true}));
 app.use(express.static(path.join(__dirname, "public")));
@@ -62,12 +64,21 @@ app.get("/home/:id/show", wrapAsync(async(req,res)=>{
     res.render("listings/show.ejs", {item});
 }));
 
+const validateListing= (req,res,next)=>{
+    let {error} = listingSchema.validate(req.body);
+    if(error){
+        throw new expressError(400,"Please check your Description and price feild");
+    }else{
+        next();
+    }
+}
+
 app.get("/home/new", (req,res)=>{
     res.render("listings/new.ejs")
 })
 
-app.post("/home/new", wrapAsync( async (req,res)=>{
-          const {title,description,price,location,country,image} = req.body;
+app.post("/home/new", validateListing, wrapAsync( async (req,res)=>{
+    const {title,description,price,location,country,image} = req.body;
     let add = new listing(req.body);
     await add.save();
     res.redirect("/home");
@@ -95,8 +106,3 @@ app.use((err,req,res,next)=>{
     let {status=500,message="something went wrong"}=err;
     res.status(status).render("listings/error.ejs", {message});
 });
-
-
-
-
-
