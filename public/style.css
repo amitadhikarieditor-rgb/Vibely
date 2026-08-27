@@ -81,6 +81,12 @@
     border: none !important;
     margin-top: 20px;
 }
+.card-img-top-e{
+      width:1000px !important;
+      border-radius: 3%;
+}
+
+
 .card-img-top{
     height:450px;
     object-fit: cover;
@@ -123,9 +129,9 @@ label{
 }
 
 .c{
-    border:1px solid black;
     border-radius:10px ;
     padding: 20px;
+    width:800px;
 }
 .search-btn{
     margin-right:30px
@@ -171,4 +177,18 @@ label{
 
 .page .new{
     height:830px !important;
+}
+
+.c{
+    width:1000px;
+    height:100%;
+} 
+
+.review-card{
+    border: 1px solid rgb(204, 198, 198);
+    border-radius: 3%;
+}
+
+.review-card-body{
+    padding:10px;
 }

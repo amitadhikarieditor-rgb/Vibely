@@ -4,10 +4,12 @@ const path = require("path");
 const mongoose = require("mongoose");
 const methodOverride= require("method-override");
 const listing = require("./models/model.js"); 
+const review = require("./models/review.js")
 const ejsMate = require("ejs-mate");
 const wrapAsync = require("./utils/wrapsync.js");
 const expressError= require("./utils/expressError.js");
-const listingSchema=require("./joi.js");
+const {listingSchema, reviewSchema}=require("./joi.js");
+
 
 
 app.use(express.urlencoded({extended:true}));
@@ -57,11 +59,32 @@ app.get("/home/search",wrapAsync(async(req,res)=>{
     console.log(req.query.q);
     console.log(card);
 }));
+const validateReviews= (req,res,next)=>{
+    let {error} = reviewSchema.validate(req.body);
+    if(error){
+        throw new expressError(400,"Please add valid review and ratings");
+    }else{
+        next();
+    }
+}
+
+app.post("/home/:id/review", validateReviews, wrapAsync( async (req,res)=>{
+     const listingDoc = await listing.findById(req.params.id);
+    const newReview = new review(req.body.review);
+
+    listingDoc.reviews.push(newReview);
+
+    await newReview.save();
+    await listingDoc.save();
+    await listingDoc.populate("reviews")
+    console.log(req.body.review)
+    res.render("./listings/show.ejs", {item:listingDoc});
+}));
 
 app.get("/home/:id/show", wrapAsync(async(req,res)=>{
     const id = req.params.id;
-    const item = await listing.findById(id);
-    res.render("listings/show.ejs", {item});
+    const item = await listing.findById(id).populate('reviews');
+    res.render("listings/show.ejs", {item})
 }));
 
 const validateListing= (req,res,next)=>{
