@@ -1,11 +1,11 @@
 <%-layout("layouts/boilerplate.ejs")%>
 
    <div class="d-flex justify-content-center">
-  <div class="c-area" style="width: 24rem;">
+  <div class="c-area" style="width: 70rem;">
     <h3><%= item.title %></h3>
 
     <div class="c">
-      <img class="img card-img-top" style="height:350px" src="<%= item.image.url %>">
+      <img class="img card-img-top-e" style="height:350px" src="<%= item.image.url %>">
 
       <p><%= item.description %></p>
       <p><%= item.location %></p>
@@ -13,15 +13,59 @@
       <p>₹<%= item.price %>/-</p>
 
       <!-- <form method="GET" action="/home"> -->
-
-        <form method="POST" action="/home/<%=item._id%>/edit?_method=PATCH">
+    <div class="d-flex justify-content-between">
+      <form method="POST" action="/home/<%=item._id%>/edit?_method=PATCH">
     <button class="btn btn-dark" type="submit">Edit</button>
-</form>
-<br/>
+</form>    
 
-        <form method="POST" action="/home/<%=item._id%>/Delete?_method=DELETE">
+    <form method="POST" action="/home/<%=item._id%>/Delete?_method=DELETE">
             <button class="btn btn-outline-danger" type="submit">Delete</button>
-        </form>
+    </form>
+    </div>
+
+     <div>
+      <hr/>
+      <h3>
+        Review Here!
+      </h3>
+      <form method="POST" action="/home/<%=item.id%>/review" novalidate class="needs-validation" >
+
+          <label for="rating" ></label>
+          <input class="form-range" min="1" max="5" type="range" id="rating" name="review[rating]">
+          <br/>
+          <label class="form-label"></label>
+          <textarea required class="form-control" id="comment" name="review[comment]" rows="5" ></textarea>
+          <div class="invalid-feedback">
+            kindly fill the appropriate feedback
+          </div>
+          <br/>
+          <label for="submit"></label>
+          <button title="Submit here!" class="btn btn-outline-danger" type="submit"  id="submit"> Submit</button>
+          </form>
+          <hr/>
+          <h4>
+            All reviews!
+          </h4>
+
+<div class="row">
+  <% for (review of item.reviews) { %>
+    <div class="review-card mb-2 ms-1  col-5">
+      <div class="review-card-body">
+        <div class="card-title"> Adhikari</div>
+
+        <div class="card-text">
+             <%= review.comment %>
+        </div>
+        <div class="card-text">
+        Rating: <%= review.rating %> star
+        </div>
+      </div>
+      </div>
+
+  <% } %>
+  </div>
+
+
     </div>
   </div>
 </div>
