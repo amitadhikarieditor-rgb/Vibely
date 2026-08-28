@@ -82,15 +82,19 @@
     margin-top: 20px;
 }
 .card-img-top-e{
-      width:1000px !important;
-      border-radius: 3%;
+      width:850px !important;
+      border-radius: 3% !important;
+      height:600px !important ;
+
 }
 
 
 .card-img-top{
     height:450px;
     object-fit: cover;
-    border-radius:1rem;
+    border-radius:3%;
+    padding:0px;
+
 }
 .create-btn{
     margin-left: 20rem;
@@ -180,7 +184,7 @@ label{
 }
 
 .c{
-    width:1000px;
+    width:875px;
     height:100%;
 } 
 

@@ -10,121 +10,46 @@ const wrapAsync = require("./utils/wrapsync.js");
 const expressError= require("./utils/expressError.js");
 const {listingSchema, reviewSchema}=require("./joi.js");
 
+const listingRouter = require("./routes/listings.js");
+const reviewRouter = require("./routes/reviews.js");
 
 
+//expressencoded for parsing the req.body data to the server and performing the CRUD operations 
 app.use(express.urlencoded({extended:true}));
+//this is for giving the path for the public files serving
 app.use(express.static(path.join(__dirname, "public")));
+//this is for setting and using the embedded javascript for rendering the pages 
 app.set("view engine", "ejs");
+//this is the methodOverride because the ejs cannot send the patch and delete routes 
 app.use(methodOverride("_method"));
+//this is for using the prebuilt layouts built in /layouts/boilerplate.ejs
 app.engine("ejs",ejsMate);
-
-
+//mongoose connect
 async function main(){
     await mongoose.connect("mongodb://127.0.0.1:27017/listings")
 }
-
+//mongoose connect function
 main().then((res)=>{
     console.log("ho gya connect");
 }).catch((err)=>{
     console.log("lag gye")
 });
-
+//server starting route
 app.listen(3030, (req,res)=>{
     console.log("sun rha hai naa tu")
 });
 
-app.get("/", (req,res)=>{
-    res.render("listings/login.ejs")
-}); 
+app.use("/", listingRouter);
 
-app.get("/home", wrapAsync(async (req,res)=>{
-    const items = await listing.find({});
-    console.log("horha hai")
-    res.render("listings/home.ejs", {items});
-}));
+app.use("/", reviewRouter);
 
-
-app.get("/home/search",wrapAsync(async(req,res)=>{
-    let search = String(req.query.q);
-    const conditions =[{title:{$regex:search, $options:"i"}},
-        {country:{$regex:search, $options:"i"}},
-        {location:{$regex:search, $options:"i"}},
-        {description:{$regex:search, $options:"i"}}];
-
-    if(!isNaN(Number(search))){
-        conditions.push({price:Number(search)});
-    };
-    const card= await listing.find({$or:conditions})
-    res.render("listings/search.ejs", {card});
-    console.log(req.query.q);
-    console.log(card);
-}));
-const validateReviews= (req,res,next)=>{
-    let {error} = reviewSchema.validate(req.body);
-    if(error){
-        throw new expressError(400,"Please add valid review and ratings");
-    }else{
-        next();
-    }
-}
-
-app.post("/home/:id/review", validateReviews, wrapAsync( async (req,res)=>{
-     const listingDoc = await listing.findById(req.params.id);
-    const newReview = new review(req.body.review);
-
-    listingDoc.reviews.push(newReview);
-
-    await newReview.save();
-    await listingDoc.save();
-    await listingDoc.populate("reviews")
-    console.log(req.body.review)
-    res.render("./listings/show.ejs", {item:listingDoc});
-}));
-
-app.get("/home/:id/show", wrapAsync(async(req,res)=>{
-    const id = req.params.id;
-    const item = await listing.findById(id).populate('reviews');
-    res.render("listings/show.ejs", {item})
-}));
-
-const validateListing= (req,res,next)=>{
-    let {error} = listingSchema.validate(req.body);
-    if(error){
-        throw new expressError(400,"Please check your Description and price feild");
-    }else{
-        next();
-    }
-}
-
-app.get("/home/new", (req,res)=>{
-    res.render("listings/new.ejs")
-})
-
-app.post("/home/new", validateListing, wrapAsync( async (req,res)=>{
-    const {title,description,price,location,country,image} = req.body;
-    let add = new listing(req.body);
-    await add.save();
-    res.redirect("/home");
-}));
-
-app.patch("/home/:id/edit", wrapAsync(async (req,res)=>{
-     const {title,description,price,location,country,image} = req.body;
-     const id = req.params.id;
-     const edit = await listing.findByIdAndUpdate(id,req.body, {returnDocument: "after"});
-     res.render("listings/update.ejs", {edit});
-}));
-
-app.delete("/home/:id/delete",wrapAsync( async (req,res)=>{
-    const id=req.params.id;
-    const Del = await listing.findByIdAndDelete(id,);
-    res.redirect("/home");
-}));
-
+//this is the error handler applier for all the routes 
 app.all("/{*splat}", (req,res,next)=>{
     next(new expressError(400, "page not found bruhhhhhh!"));
 });
 
-//err handeler
+
+//and this is the err handeler
 app.use((err,req,res,next)=>{
     let {status=500,message="something went wrong"}=err;
     res.status(status).render("listings/error.ejs", {message});
