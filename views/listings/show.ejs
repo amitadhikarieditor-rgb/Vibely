@@ -1,7 +1,7 @@
 <%-layout("layouts/boilerplate.ejs")%>
 
    <div class="d-flex justify-content-center">
-  <div class="c-area" style="width: 70rem;">
+  <div class="c-area" style="width: 50rem;">
     <h3><%= item.title %></h3>
 
     <div class="c">
@@ -43,11 +43,11 @@
           <button title="Submit here!" class="btn btn-outline-danger" type="submit"  id="submit"> Submit</button>
           </form>
           <hr/>
-          <h4>
-            All reviews!
-          </h4>
 
 <div class="row">
+  <h4>
+     All reviews!
+  </h4>
   <% for (review of item.reviews) { %>
     <div class="review-card mb-2 ms-1  col-5">
       <div class="review-card-body">
@@ -59,13 +59,18 @@
         <div class="card-text">
         Rating: <%= review.rating %> star
         </div>
+
+        <form method="POST" action="/home/<%=item.id%>/review/<%=review.id%>?_method=DELETE">
+          <button class="btn btn-outline-dark mt-3" >
+            delete the review
+          </button>
+        </form>
+
       </div>
       </div>
 
   <% } %>
   </div>
-
-
     </div>
   </div>
 </div>

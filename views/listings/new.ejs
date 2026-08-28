@@ -37,9 +37,17 @@
                 Thanks for entering
             </div>
 
+    <label  for="image" class="form-label">URL of the Image</label>
+    <input id="image" class="form-control" placeholder="Image" name="image[url]" type="url">
 
 
-    <label  for="country" class="form-label">Enter the country</label>
+<div class="row g-3 align-items-end">
+  <div class="col-md-3 w-50">
+    <label for="price" class="form-label">Price</label>
+    <input required id="price" class="form-control" placeholder="Price" name="price" >
+    </div>
+      <div class="col-md-3 w-50">
+        <label  for="country" class="form-label">Enter the country</label>
     <select required id="country" class="form-select" name="country">
   <option>Afghanistan</option>
 <option>Albania</option>
@@ -237,13 +245,11 @@
 <option>Zambia</option>
 <option>Zimbabwe</option>
 </select>
+</div>
 
-    <label  for="image" class="form-label">URL of the Image</label>
-    <input id="image" class="form-control" placeholder="Image" name="image[url]" type="url">
 
-  
-    <label for="price" class="form-label">Price</label>
-    <input required id="price" class="form-control" placeholder="Price" name="price" >
+</div>
+    
 
 
 
