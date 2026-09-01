@@ -6,16 +6,6 @@ const wrapAsync = require("../utils/wrapsync.js");
 const expressError= require("../utils/expressError.js");
 const {listingSchema, reviewSchema}=require("../joi.js");
 
-//this is the listing validator for preventing the unlawful or unwanted listing in which i took the listing.sechema.vladiate deconstruted the error out of the req.body and throw if the error hapens according to the model we seted through joi! else we are calling up the next(); which goes for the new route line 107-116!
-const validateListing= (req,res,next)=>{
-    let {error} = listingSchema.validate(req.body);
-    if(error){
-        throw new expressError(400,"Please check your Description and price feild");
-    }else{
-        next();
-    }
-}
-
 //root route "/"
 Router.get("/", (req,res)=>{
     res.render("listings/login.ejs")
@@ -48,19 +38,34 @@ Router.get("/home/search",wrapAsync(async(req,res)=>{
 Router.get("/home/:id/show", wrapAsync(async(req,res)=>{
     const id = req.params.id;
     const item = await listing.findById(id).populate('reviews');
+    if(!item){
+        req.flash("error","Venue asked for does not exists")
+        return res.redirect("/home")
+    }
     res.render("listings/show.ejs", {item})
 }));
-
 
 //this is the get route for the form filling of the feilds required for the listings 
 Router.get("/home/new", (req,res)=>{
     res.render("listings/new.ejs")
 })
+
+//this is the listing validator for preventing the unlawful or unwanted listing in which i took the listing.sechema.vladiate deconstruted the error out of the req.body and throw if the error hapens according to the model we seted through joi! else we are calling up the next(); which goes for the new route line 107-116!
+const validateListing= (req,res,next)=>{
+    let {error} = listingSchema.validate(req.body);
+    if(error){
+        throw new expressError(400,error);
+    }else{
+        next();
+    }
+}
+
 //this is the post route for actually making the item and saving to the DB listings deconstructed the title, des etc from the req.body and added to the listing and calling the save() function and redirecting to the home route where the listing will be shown
 Router.post("/home/new", validateListing, wrapAsync( async (req,res)=>{
     const {title,description,price,location,country,image} = req.body;
-    let add = new listing(req.body);
+    let add = new listing(req.body.listing);
     await add.save();
+    req.flash("success", "added successfully")
     res.redirect("/home");
 }));
 
@@ -68,7 +73,7 @@ Router.post("/home/new", validateListing, wrapAsync( async (req,res)=>{
 Router.patch("/home/:id/edit", wrapAsync(async (req,res)=>{
      const {title,description,price,location,country,image} = req.body;
      const id = req.params.id;
-     const edit = await listing.findByIdAndUpdate(id,req.body, {returnDocument: "after"});
+     const edit = await listing.findByIdAndUpdate(id,req.body.listing, {returnDocument: "after"});
      res.render("listings/update.ejs", {edit});
 }));
 
@@ -76,9 +81,15 @@ Router.patch("/home/:id/edit", wrapAsync(async (req,res)=>{
 Router.delete("/home/:id/delete",wrapAsync( async (req,res)=>{
     const id=req.params.id;
     const Del = await listing.findByIdAndDelete(id);
+    req.flash("success", "deleted sucessfully");
     res.redirect("/home");
 }));
 
+Router.use((err,req,res,next)=>{
+    let {status=500,message="something went wrong"}=err;
+
+    res.status(status).render("listings/error.ejs", {message});
+});
 
 
 

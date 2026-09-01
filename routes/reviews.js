@@ -1,5 +1,5 @@
 const express = require("express");
-const router= express();
+const router= express.Router();
 const methodOverride= require("method-override");
 const listing = require("../models/model.js");
 const review = require("../models/review.js")
@@ -24,6 +24,7 @@ const validateListing= (req,res,next)=>{
     let {error} = listingSchema.validate(req.body);
     if(error){
         throw new expressError(400,"Please check your Description and price feild");
+        console.log(error);
     }else{
         next();
     }
@@ -34,12 +35,14 @@ const validateListing= (req,res,next)=>{
 router.post("/home/:id/review", validateReviews, wrapAsync( async (req,res)=>{
      const listingDoc = await listing.findById(req.params.id);
     const newReview = new review(req.body.review);
+    let {id} = req.params;
     listingDoc.reviews.push(newReview);
     await newReview.save();
     await listingDoc.save();
     await listingDoc.populate("reviews")
-    console.log(req.body.review)
-    res.render("./listings/show.ejs", {item:listingDoc});
+    console.log(req.body.review);
+    req.flash("success", "review added sucessfully");
+    res.redirect(`/home/${id}/show`);
 }));
 
 //delete the review route
@@ -48,6 +51,7 @@ router.delete("/home/:id/review/:reviewId", wrapAsync(async (req,res)=>{
        await review.findById(reviewId);
        await listing.findByIdAndUpdate(id, {$pull: {reviews:reviewId}});
        await review.findByIdAndDelete(reviewId);
+       req.flash("success", "review deleted sucessfully");
        res.redirect(`/home/${id}/show`);
 }))
 

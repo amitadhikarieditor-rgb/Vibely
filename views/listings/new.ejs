@@ -8,7 +8,7 @@
 
 
             <label for="title" class="form-label">Your property's Identity</label>
-            <input required class="form-control" id="title " placeholder="Title" name="title" type="text">
+            <input required class="form-control" id="title " placeholder="Title" name="listing[title]" type="text">
             <div class="invalid-feedback">
                 Please enter a title.
             </div>
@@ -18,7 +18,7 @@
 
 
     <label for="description" class="form-label">Description</label>
-    <textarea required class="form-control" id="description" rows="3"  placeholder="Add Description" name="description" type="text"></textarea>
+    <textarea required class="form-control" id="description" rows="3"  placeholder="Add Description" name="listing[description]" type="text"></textarea>
     <div class="invalid-feedback">
                 Please enter a Description
             </div>
@@ -29,7 +29,7 @@
 
 
     <label for="location" class="form-label">Enter the Location</label>
-    <input required class="form-control" id="location" placeholder="Location" name="location" type="text"> 
+    <input required class="form-control" id="location" placeholder="Location" name="listing[location]" type="text"> 
     <div class="invalid-feedback">
                 Please enter a valid location
             </div>
@@ -38,17 +38,17 @@
             </div>
 
     <label  for="image" class="form-label">URL of the Image</label>
-    <input id="image" class="form-control" placeholder="Image" name="image[url]" type="url">
+    <input id="image" class="form-control" placeholder="Image" name="listing[image][url]" type="url">
 
 
 <div class="row g-3 align-items-end">
   <div class="col-md-3 w-50">
     <label for="price" class="form-label">Price</label>
-    <input required id="price" class="form-control" placeholder="Price" name="price" >
+    <input required id="price" class="form-control" placeholder="Price" name="listing[price]" >
     </div>
       <div class="col-md-3 w-50">
         <label  for="country" class="form-label">Enter the country</label>
-    <select required id="country" class="form-select" name="country">
+    <select required id="country" class="form-select" name="listing[country]">
   <option>Afghanistan</option>
 <option>Albania</option>
 <option>Algeria</option>
