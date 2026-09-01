@@ -85,10 +85,10 @@
       width:850px !important;
       border-radius: 3% !important;
       height:600px !important ;
-
 }
-
-
+.card .card-img-top{
+    border-radius: 45px;
+}
 .card-img-top{
     height:450px;
     object-fit: cover;
@@ -190,9 +190,10 @@ label{
 
 .review-card{
     border: 1px solid rgb(204, 198, 198);
-    border-radius: 3%;
+    border-radius: 40px;
 }
 
 .review-card-body{
-    padding:10px;
+    padding:20px;
 }
+

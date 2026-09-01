@@ -1,27 +1,28 @@
-<%-layout("layouts/boilerplate.ejs")%>;
+<%-layout("layouts/boilerplate.ejs")%>
+
 <div class="page h-25" >
     <div class="mb-2 new">
     <form method="POST" action="/home/<%=edit._id%>/edit?_method=PATCH">
 
     <label for="title" class="form-label">Change Title</label>
-    <input class="form-control" id="title" placeholder="Title" name="title"  type="text" value= <%=edit.title%> >
+    <input class="form-control" id="title" placeholder="Title" name="listing[title]"  type="text" value= "<%=edit.title%>" >
     
      <label for="Description" class="form-label">Change Description</label>
-    <textarea class="form-control" id="description" rows="2" cols="30" placeholder="wanna change Description?" name="description" type="text"><%=edit.description%> </textarea>
+    <textarea class="form-control" id="description" rows="2" cols="30" placeholder="wanna change Description?" name="listing[description]" type="text"><%=edit.description%></textarea>
 
     <label for="location" class="form-label">Change The Location</label>
-    <input class="form-control" id="location" placeholder="Location" name="location" type="text" value=<%=edit.location%>>
+    <input class="form-control" id="location" placeholder="Location" name="listing[location]" type="text" value="<%=edit.location%>">
     
-     <label for="country" class="form-label">Change The Location</label>
-    <input class="form-control" id="country" placeholder="Country" name="country" type="text" value=<%=edit.country%>>
+     <label for="country" class="form-label">Change The country</label>
+    <input class="form-control" id="country" name="listing[country]" placeholder="Country"type="text" value="<%=edit.country%>">
     
     <label for="image" class="form-label">Your image</label>
 
     <img src="<%= edit.image.url %>" style="width:250px; height:250px;">
-    <input id= "image" class="form-control" name="image[url]" type="url" value="<%= edit.image.url %>">
+    <input id= "image" class="form-control" name="listing[image][url]" type="url" value="<%= edit.image.url %>">
     
     <label for="price" class="form-label">Change Your Price</label>
-    <input id="price" class="form-control" placeholder="Price" name="price" type="number" value=<%=edit.price%>>
+    <input id="price" class="form-control" placeholder="Price" name="listing[price]" type="number" value="<%=edit.price%>">
     
     <br/>
         <button class="btn btn-danger">
