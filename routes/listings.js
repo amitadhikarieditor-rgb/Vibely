@@ -2,14 +2,13 @@ const express = require("express");
 const Router= express.Router();
 const methodOverride= require("method-override");
 const listing = require("../models/model.js"); 
+const user = require("../models/user.js");
 const wrapAsync = require("../utils/wrapsync.js");
 const expressError= require("../utils/expressError.js");
 const {listingSchema, reviewSchema}=require("../joi.js");
+const passport = require("passport");
 
-//root route "/"
-Router.get("/", (req,res)=>{
-    res.render("listings/login.ejs")
-}); 
+
 
 //get route for /home route 
 Router.get("/home", wrapAsync(async (req,res)=>{

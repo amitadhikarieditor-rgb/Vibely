@@ -1,17 +1,19 @@
 <%-layout("layouts/boilerplate.ejs")%>
     <h1 class="login-h1 offset-5">
-           LOGIN HERE!
+           SGINUP HERE!
     </h1>
-
     <br/>
     <br/>
     <div>
          <div class="needs-validation" novalidate>
-            <form method="post" action="/login">
+            <form method="post" action="/">
                 <div class="mb-2 login-area ms-auto">
 
     <label for="Inputuser" class="form-label">Username</label>
     <input name="username" required type="text" class="form-control w-100" id="Inputuser" aria-describedby="emailHelp">
+
+                     <label for="InputEmail1" class="form-label">Email address</label>
+                    <input name="email" required type="email" class="form-control w-100" id="InputEmail1" aria-describedby="emailHelp">
 
                     <div class="password-area ">
                          <label for="password" class="form-label">Password</label>
@@ -23,11 +25,11 @@
 <br/>
                      <div class="mb-3 form-check">
                        
-    <!-- <input required type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Check me out</label> -->
+    <input required type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Check me out</label>
  <br/>
  <br/>
- <button class="btn btn-danger offset-5" type="submit"> LOGIN </button>
+ <button class="btn btn-outline-success" type="submit"> SGIN UP </button>
  </div>
 
 </div>
@@ -36,4 +38,5 @@
             
         </body>
         </html>
+        
         
