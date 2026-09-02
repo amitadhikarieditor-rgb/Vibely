@@ -197,3 +197,9 @@ label{
     padding:20px;
 }
 
+
+@media(max:1300px){
+    .item-container{
+        flex-wrap: wrap !important;
+    }
+}

@@ -41,13 +41,16 @@ passport.deserializeUser(user.deserializeUser())
 app.use((req,res,next)=>{
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
-    console.log(res.locals.success)
+    // console.log(res.locals.success)
     next();
 });
+
+
 
 //routes for web pages 
 const listingRouter = require("./routes/listings.js");
 const reviewRouter = require("./routes/reviews.js");
+const userRouter = require("./routes/users.js");
 
 
 
@@ -67,22 +70,23 @@ async function main(){
 }
 //mongoose connect function
 main().then((res)=>{
-    console.log("ho gya connect");
+    console.log(res,"database ho gya connect");
 }).catch((err)=>{
-    console.log("lag gye")
+    console.log(err, "database ke lag gye")
 });
 //server starting route
 app.listen(3030, (req,res)=>{
-    console.log("sun rha hai naa tu")
+    console.log("server sun rha hai naa tu")
 });
 
 app.use("/", listingRouter);
-
 app.use("/", reviewRouter);
+app.use("/", userRouter);
+
 
 //this is the error handler applier for all the routes 
 app.all("/{*splat}", (req,res,next)=>{
-    next(new expressError(400, "page not found bruhhhhhh!"));
+    next(new expressError(400, "page does not exist"));
 });
 
 
