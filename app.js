@@ -20,27 +20,28 @@ const sessionOption = {
     resave : false,
     saveUninitialized : true,
     cookie:{
-        expires: Date.now() + 7*24*60*60*1000,
+        expires: new Date(Date.now() + 7*24*60*60*1000),
         maxAge: 7*24*60*60*1000,
         httpOnly: true
     }
 };
 //express sessions
-app.use(flash());
 app.use(session(sessionOption));
+app.use(flash());
 
 //passport
-app.use(passport.initialize());
-app.use(passport.session());
 passport.use(new localStrategy(user.authenticate()));
 passport.serializeUser(user.serializeUser())
 passport.deserializeUser(user.deserializeUser())
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 //middleware for flash session
 app.use((req,res,next)=>{
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
+    res.locals.currUser = req.user;
     // console.log(res.locals.success)
     next();
 });
