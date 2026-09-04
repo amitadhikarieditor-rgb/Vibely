@@ -34,7 +34,11 @@ const listSchema= new schema({
             type: schema.Types.ObjectId,
             ref: "review"
         }
-    ]
+    ],
+     owner:{
+              type: schema.Types.ObjectId,
+              ref:"user"
+        }
 });
 
 listSchema.post("findByOneAndDelete", async(listing)=>{

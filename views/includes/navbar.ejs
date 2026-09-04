@@ -15,10 +15,19 @@
 
         <button class="btn btn-danger search-btn" type="submit">Search</button>
       </form>
-
         <div>
-          <a href="/" class="btn btn-outline-dark sgin-btn">Sgin Up</a>
+          <%if(!currUser){%>
+            <a href="/" class="btn btn-outline-dark sgin-btn">Sgin Up</a>
           <a href="/login" class="btn btn-outline-danger sgin-btn">login</a>
+          <%}%>
+
+          <%if(currUser){%>
+          <form action="/logout" method="POST">
+    <button type="submit" class="btn btn-outline-danger sgin-btn">
+        Log out
+    </button>
+</form>
+          <%}%>
         </div>
       </div>
     </div>

@@ -6,6 +6,7 @@ const review = require("../models/review.js")
 const wrapAsync = require("../utils/wrapsync.js");
 const expressError= require("../utils/expressError.js");
 const {listingSchema, reviewSchema}=require("../joi.js");
+const { isLoggedIn, isAuthor, } = require("../middleware.js");
 
 
 //reviews validator using the reviewSchema.validate and deconstructing the error out of the validated req.body and using the if logic for throwing the newexpress error from /utils/expressError.js and if no error calling the next() which goes for the reviews route /home/:id/review
@@ -32,9 +33,10 @@ const validateListing= (req,res,next)=>{
 
 
 //this is the post route of reviews this takes the id of the listing DB from the req.params and saves to listingDoc and newReview has the req.body.revew from the review DB which got pushed into the array of the reviews inside the listingDB which was created in the /models/model.js for listings and /models/review.js for review model
-router.post("/home/:id/review", validateReviews, wrapAsync( async (req,res)=>{
+router.post("/home/:id/review", isLoggedIn,validateReviews, wrapAsync( async (req,res)=>{
      const listingDoc = await listing.findById(req.params.id);
     const newReview = new review(req.body.review);
+    newReview.author = req.user._id;
     let {id} = req.params;
     listingDoc.reviews.push(newReview);
     await newReview.save();
@@ -46,7 +48,7 @@ router.post("/home/:id/review", validateReviews, wrapAsync( async (req,res)=>{
 }));
 
 //delete the review route
-router.delete("/home/:id/review/:reviewId", wrapAsync(async (req,res)=>{
+router.delete("/home/:id/review/:reviewId", isLoggedIn, isAuthor, wrapAsync(async (req,res)=>{
        let {id, reviewId} = req.params;
        await review.findById(reviewId);
        await listing.findByIdAndUpdate(id, {$pull: {reviews:reviewId}});

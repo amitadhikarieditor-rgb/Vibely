@@ -6,21 +6,25 @@
     <div class="c">
       <img class="img card-img-top-e" style="height:350px" src="<%= item.image.url %>">
 
+      <p>Owned by <i><%=item.owner.username%></i></p>
+
       <p><%= item.description %></p>
       <p><%= item.location %></p>
       <p><%= item.country %></p>
       <p>₹<%= item.price %>/-</p>
       
+  <%if(currUser && item.owner._id.equals(currUser._id)){%>
     <div class="d-flex justify-content-between">
       <form method="POST" action="/home/<%=item._id%>/edit?_method=PATCH">
     <button class="btn btn-dark" type="submit">Edit</button>
-</form>    
-
+</form>
     <form method="POST" action="/home/<%=item._id%>/Delete?_method=DELETE">
             <button class="btn btn-outline-danger" type="submit">Delete</button>
     </form>
     </div>
-
+<%}%>
+ 
+<% if(currUser) {%>
      <div>
       <hr/>
       <h3>
@@ -41,6 +45,8 @@
           <button title="Submit here!" class="btn btn-outline-danger" type="submit"  id="submit"> Submit</button>
           </form>
           <hr/>
+          <%}%>
+          
 
 <div class="row">
   <h4>
@@ -49,7 +55,9 @@
   <% for (review of item.reviews) { %>
     <div class="review-card mb-2 ms-5  col-5">
       <div class="review-card-body">
-        <div class="card-title"> Adhikari</div>
+        <div class="card-title"> 
+          <strong>By: <%= review.author.username %></strong>
+        </div>
 
         <div class="card-text">
              <%= review.comment %>
