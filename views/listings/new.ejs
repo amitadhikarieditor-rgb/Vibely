@@ -3,7 +3,7 @@
     <h2 class="h" >
         Create a New Listing
     </h2>
-    <form class="needs-validation" novalidate method="POST" action="/home/new">
+    <form class="needs-validation" novalidate method="POST" action="/home/new" enctype="multipart/form-data">
         <div class="mb-2 new">
 
 
@@ -29,17 +29,25 @@
 
 
     <label for="location" class="form-label">Enter the Location</label>
-    <input required class="form-control" id="location" placeholder="Location" name="listing[location]" type="text"> 
+    <input required class="form-control" id="location" 
+     placeholder="Location"
+     name="listing[location]"
+     type="text"
+     enctype="multipart/form-data"> 
+
     <div class="invalid-feedback">
                 Please enter a valid location
             </div>
             <div class="valid-feedback">
                 Thanks for entering
             </div>
-
-    <label  for="image" class="form-label">URL of the Image</label>
-    <input id="image" class="form-control" placeholder="Image" name="listing[image][url]" type="url">
-
+<!-- 
+    <label  for="url" class="form-label">URL of the Image</label>
+    <input id="url" class="form-control" placeholder="Image" name="listing[image][url]" type="url"> -->
+<br/>
+    <label  for="image" class="form-label">Upload Image</label>
+    <input id="image" class="form-control" placeholder="Image" name="image" type="file" accept="image/*">
+<br/>
 
 <div class="row g-3 align-items-end">
   <div class="col-md-3 w-50">

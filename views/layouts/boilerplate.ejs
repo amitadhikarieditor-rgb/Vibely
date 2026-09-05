@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="/reviewStyle.css"> 
 </head>
 <body >
     <%-include("../includes/navbar.ejs")%>
@@ -48,6 +49,39 @@
                     let input=document.getElementById("password");
                     input.type=input.type=== "password" ? "text" : "password";
                 }
+
+
+                const themeToggle = document.getElementById("themeToggle");
+
+const savedTheme = localStorage.getItem("theme");
+
+if (savedTheme === "dark") {
+    document.documentElement.setAttribute("data-theme", "dark");
+    themeToggle.innerText = "☀️";
+}
+
+themeToggle.addEventListener("click", () => {
+
+    const currentTheme =
+        document.documentElement.getAttribute("data-theme");
+
+    if (currentTheme === "dark") {
+
+        document.documentElement.removeAttribute("data-theme");
+
+        localStorage.setItem("theme", "light");
+
+        themeToggle.innerText = "🌙";
+
+    } else {
+
+        document.documentElement.setAttribute("data-theme", "dark");
+
+        localStorage.setItem("theme", "dark");
+
+        themeToggle.innerText = "☀️";
+    }
+});
             </script>
 </body>
 </html>
