@@ -14,6 +14,8 @@ const flash = require("connect-flash");
 const passport = require("passport");
 const localStrategy = require("passport-local");
 const user = require("./models/user.js")
+const multer = require("multer");
+const upload = multer({dest: "uploads/"});
 
 const sessionOption = {
     secret : "amit adhikari the author",
@@ -55,16 +57,17 @@ const userRouter = require("./routes/users.js");
 
 
 
-//express.uelencoded for parsing the req.body data to the server and performing the CRUD operations 
+
 app.use(express.urlencoded({extended:true}));
-//this is for giving the path for the public files serving
+
 app.use(express.static(path.join(__dirname, "public")));
-//this is for setting and using the embedded javascript for rendering the pages 
+
 app.set("view engine", "ejs");
-//this is the methodOverride because the ejs cannot send the patch and delete routes 
+
 app.use(methodOverride("_method"));
-//this is for using the prebuilt layouts built in /layouts/boilerplate.ejs
+
 app.engine("ejs",ejsMate);
+
 //mongoose connect
 async function main(){
     await mongoose.connect("mongodb://127.0.0.1:27017/listings")

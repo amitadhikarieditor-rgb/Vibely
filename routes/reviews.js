@@ -7,6 +7,7 @@ const wrapAsync = require("../utils/wrapsync.js");
 const expressError= require("../utils/expressError.js");
 const {listingSchema, reviewSchema}=require("../joi.js");
 const { isLoggedIn, isAuthor, } = require("../middleware.js");
+const controller = require("../controllers/reviewController.js");
 
 
 //reviews validator using the reviewSchema.validate and deconstructing the error out of the validated req.body and using the if logic for throwing the newexpress error from /utils/expressError.js and if no error calling the next() which goes for the reviews route /home/:id/review
@@ -33,28 +34,9 @@ const validateListing= (req,res,next)=>{
 
 
 //this is the post route of reviews this takes the id of the listing DB from the req.params and saves to listingDoc and newReview has the req.body.revew from the review DB which got pushed into the array of the reviews inside the listingDB which was created in the /models/model.js for listings and /models/review.js for review model
-router.post("/home/:id/review", isLoggedIn,validateReviews, wrapAsync( async (req,res)=>{
-     const listingDoc = await listing.findById(req.params.id);
-    const newReview = new review(req.body.review);
-    newReview.author = req.user._id;
-    let {id} = req.params;
-    listingDoc.reviews.push(newReview);
-    await newReview.save();
-    await listingDoc.save();
-    await listingDoc.populate("reviews")
-    console.log(req.body.review);
-    req.flash("success", "review added sucessfully");
-    res.redirect(`/home/${id}/show`);
-}));
+router.post("/home/:id/review", isLoggedIn,validateReviews, wrapAsync( controller.review ));
 
 //delete the review route
-router.delete("/home/:id/review/:reviewId", isLoggedIn, isAuthor, wrapAsync(async (req,res)=>{
-       let {id, reviewId} = req.params;
-       await review.findById(reviewId);
-       await listing.findByIdAndUpdate(id, {$pull: {reviews:reviewId}});
-       await review.findByIdAndDelete(reviewId);
-       req.flash("success", "review deleted sucessfully");
-       res.redirect(`/home/${id}/show`);
-}))
+router.delete("/home/:id/review/:reviewId", isLoggedIn, isAuthor, wrapAsync(controller.reviewDestroy));
 
 module.exports = router;
