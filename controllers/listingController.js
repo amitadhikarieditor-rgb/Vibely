@@ -38,7 +38,7 @@ module.exports.Show = async(req,res)=>{
 
 module.exports.new = async (req,res)=>{
     let {filename, path} = req.file;
-    const {title,description,price,location,country,image} = req.body;
+    // const {title,description,price,location,country,image} = req.body;
     let add = new listing(req.body.listing);
     add.owner = req.user._id;
     add.image = {url:path, filename:filename}
@@ -60,5 +60,26 @@ module.exports.edit= async (req,res)=>{
      const {title,description,price,location,country,image} = req.body;
      const id = req.params.id;
      const edit = await listing.findByIdAndUpdate(id,req.body.listing, {returnDocument: "after"});
-     res.render("listings/update.ejs", {edit});
+        if(typeof req.file !== "undefined"){
+            let {filename, path} = req.file;
+            edit.image = {url:path, filename:filename}
+            await edit.save();
+        }
+        if(!edit){
+            req.flash("error","Venue asked for does not exists")
+            return res.redirect("/home");
+        }
+
+     req.flash("success", "updated successfully");
+     res.redirect(`/home/${id}/show`);
+};
+
+module.exports.GetEdit = async(req,res)=>{
+    const id = req.params.id;
+    const edit = await listing.findById(id);
+    if(!edit){
+        req.flash("error","Venue asked for does not exists")
+        return res.redirect("/home")
+    };
+    res.render("listings/update.ejs", {edit});
 };
