@@ -37,15 +37,16 @@ module.exports.Show = async(req,res)=>{
 };
 
 module.exports.new = async (req,res)=>{
+    let {filename, path} = req.file;
     const {title,description,price,location,country,image} = req.body;
     let add = new listing(req.body.listing);
     add.owner = req.user._id;
+    add.image = {url:path, filename:filename}
     await add.save();
     req.flash("success", "added successfully")
     res.redirect("/home");
        console.log(req.file);
     console.log(req.body);
-    // res.json(req.file);
 };
 
 module.exports.destroy = async (req,res)=>{
