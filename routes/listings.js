@@ -12,7 +12,8 @@ const { findById } = require("../models/model.js");
 const review = require("../models/review.js");
 const controller = require("../controllers/listingController.js");
 const multer = require("multer");
-const upload = multer({dest: "uploads/"});
+const { storage } = require("../config.js");
+const upload = multer({ storage });
 
 
 Router.get("/home",isLoggedIn,wrapAsync(controller.index));

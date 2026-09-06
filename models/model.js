@@ -17,10 +17,9 @@ const listSchema= new schema({
         required:true
     },
     image:{
-        url:{type:String,
-        default:"https://st.hzcdn.com/simgs/pictures/house-exteriors/frenchmans-creek-stoke-fleming-bbh-chartered-architects-ltd-img~b6e10e01046dcd50_4-0911-1-2a48c60.jpg?utm_source=chatgpt.com",
-        set: (v)=> v==="" ? "https://st.hzcdn.com/simgs/pictures/house-exteriors/frenchmans-creek-stoke-fleming-bbh-chartered-architects-ltd-img~b6e10e01046dcd50_4-0911-1-2a48c60.jpg?utm_source=chatgpt.com":v,
-    }},
+        url:String,
+        filename:String  
+    },
     location:{
         type:String,
         required:true,
