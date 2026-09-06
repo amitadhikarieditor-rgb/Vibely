@@ -3,7 +3,7 @@ const joi = require("joi");
 const listingSchema = joi.object({
     listing:joi.object({
         title:joi.string().required(),
-        description:joi.string().required().min(20).max(100),
+        description:joi.string().required().min(20).max(500),
         location:joi.string().required(),
         country:joi.string().required(),
         price:joi.number().required().min(0),

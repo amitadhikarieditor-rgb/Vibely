@@ -44,8 +44,9 @@ const validateListing= (req,res,next)=>{
 
 Router.post("/home/new", isLoggedIn, upload.single("image"), validateListing, wrapAsync(controller.new));
 
+Router.get("/home/:id/edit", isLoggedIn, isOwner, wrapAsync(controller.GetEdit));
 
-Router.patch("/home/:id/edit", isOwner, wrapAsync(controller.edit));
+Router.patch("/home/:id/edit", isLoggedIn, upload.single("image"), validateListing, isOwner, wrapAsync(controller.edit));
 
 
 Router.delete("/home/:id/delete", isOwner, wrapAsync( controller.destroy));

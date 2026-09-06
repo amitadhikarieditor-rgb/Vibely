@@ -2,7 +2,7 @@
 
 <div class="page h-25" >
     <div class="mb-2 new">
-    <form method="POST" action="/home/<%=edit._id%>/edit?_method=PATCH">
+    <form method="POST" action="/home/<%=edit._id%>/edit?_method=PATCH" enctype="multipart/form-data" class="needs-validation" novalidate>
 
     <label for="title" class="form-label">Change Title</label>
     <input class="form-control" id="title" placeholder="Title" name="listing[title]"  type="text" value= "<%=edit.title%>" >
@@ -16,13 +16,20 @@
      <label for="country" class="form-label">Change The country</label>
     <input class="form-control" id="country" name="listing[country]" placeholder="Country"type="text" value="<%=edit.country%>">
     
-    <label for="image" class="form-label">Your image</label>
+    <!-- <label for="image" class="form-label">Your image</label>
 
-    <img src="<%= edit.image.url %>" style="width:250px; height:250px;">
-    <input id= "image" class="form-control" name="listing[image][url]" type="url" value="<%= edit.image.url %>">
+    <img src="<%= edit.image.url %>" style="width:150px; height:150px;">
+    <input id= "image" class="form-control" name="listing[image][url]" type="url" value="<%= edit.image.url %>"> -->
+
+    <label  for="image" class="form-label">Upload Image</label>
+
+    <img src="<%= edit.image.url %>" style="width:150px; height:150px;">
+    <input id="image" class="form-control" placeholder="Image" name="image" type="file" accept="image/*">
+
+
     
     <label for="price" class="form-label">Change Your Price</label>
-    <input id="price" class="form-control" placeholder="Price" name="listing[price]" type="number" value="<%=edit.price%>">
+    <input id="price" class="form-control" placeholder="Price" name="listing[price]"  value="<%=edit.price%>">
     
     <br/>
         <button class="btn btn-danger">

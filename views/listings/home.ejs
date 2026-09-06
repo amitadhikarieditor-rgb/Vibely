@@ -4,11 +4,11 @@
 <% for(let item of items){%>
     <div class="col-12 col-sm-6 col-lg-4" >
 
-<div class="card">
+<div class="card" >
   <div class="card-body">
   
             <a href="/home/<%=item._id%>/show">
-            <img class="card-img-top" src="<%= item.image.url %>" alt="<%= item.image %>">
+            <img loading="lazy" class="card-img-top" src="<%= item.image.url %>" alt="<%= item.image %>">
             <h3><%= item.title %></h3>
             <%= item.description %>
             <br/>

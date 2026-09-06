@@ -15,9 +15,7 @@
       
   <%if(currUser && item.owner._id.equals(currUser._id)){%>
     <div class="d-flex justify-content-between">
-      <form method="POST" action="/home/<%=item._id%>/edit?_method=PATCH">
-    <button class="btn btn-dark" type="submit">Edit</button>
-</form>
+     <a class="btn btn-danger" href="/home/<%= item._id %>/edit">Edit</a>
     <form method="POST" action="/home/<%=item._id%>/Delete?_method=DELETE">
             <button class="btn btn-outline-danger" type="submit">Delete</button>
     </form>

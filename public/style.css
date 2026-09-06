@@ -282,4 +282,9 @@ p {
     background-color: var(--input-bg) !important;
     color: var(--text-color) !important;
     border-color: var(--border-color) !important;
+};
+
+.theme-toggle-btn {
+    margin-right: 1rem !important;
+    margin-left: 0.25rem !important;
 }

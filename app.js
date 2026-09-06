@@ -1,9 +1,6 @@
 if(process.env.NODE_ENV !== "production"){
     require('dotenv').config();
 };
-
-console.log(process.env.SECRET); 
-
 const express = require("express");
 const app= express();
 const path = require("path");
@@ -24,7 +21,7 @@ const multer = require("multer");
 const upload = multer({dest: "uploads/"});
 
 const sessionOption = {
-    secret : "amit adhikari the author",
+    secret : "amit adhikari is the author",
     resave : false,
     saveUninitialized : true,
     cookie:{
