@@ -64,7 +64,7 @@
           <hr/>
           <%}%>
           
-
+<% if(item.reviews.length !==0){%>
 <div class="row">
   <h4>
      All reviews!
@@ -84,6 +84,7 @@
          <p class="starability-result" data-rating="<%= review.rating %>">
     Rated: <%= review.rating %> stars
   </p>
+   <% } %>
 
 <% if(currUser && review.author._id.equals(currUser._id)){%>
         <form method="POST" action="/home/<%=item.id%>/review/<%=review.id%>?_method=DELETE">
@@ -95,9 +96,57 @@
 
       </div>
       </div>
-
-  <% } %>
   </div>
+  <%}%>
+
+<div id="map"
+     data-coordinates='<%= JSON.stringify(item.geometry.coordinates) %>'
+     data-location="<%= item.location %>"
+     data-country="<%= item.country %>">
+    you will be here!
+</div>
+
     </div>
   </div>
 </div>
+</div>
+
+<!-- Leaflet JS - ONLY ONCE -->
+<script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin="">
+</script>
+
+<script>
+
+    const mapElement = document.getElementById("map");
+
+    const coordinates = JSON.parse(
+        mapElement.dataset.coordinates
+    );
+
+    const longitude = coordinates[0];
+    const latitude = coordinates[1];
+
+    const map = L.map("map").setView(
+        [latitude, longitude],
+        13
+    );
+
+    L.tileLayer(
+        "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+        {
+            maxZoom: 19,
+            attribution: "&copy; OpenStreetMap contributors"
+        }
+    ).addTo(map);
+
+    L.marker([latitude, longitude])
+        .addTo(map)
+        .bindPopup(
+            `${mapElement.dataset.location}, ${mapElement.dataset.country}`
+        )
+        .openPopup();
+
+</script>

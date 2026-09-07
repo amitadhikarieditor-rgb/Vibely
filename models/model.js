@@ -37,7 +37,24 @@ const listSchema= new schema({
      owner:{
               type: schema.Types.ObjectId,
               ref:"user"
+        },
+            geometry: {
+        type: {
+            type: String,
+            enum: ["Point"],
+            required: true
+        },
+
+        coordinates: {
+            type: [Number],
+            required: true
         }
+    },
+    
+});
+
+listSchema.index({
+    geometry: "2dsphere"
 });
 
 listSchema.post("findByOneAndDelete", async(listing)=>{

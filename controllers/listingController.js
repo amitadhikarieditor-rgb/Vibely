@@ -1,4 +1,5 @@
 const listing = require("../models/model.js"); 
+const geocode = require("../utils/geoCode.js");
 
 module.exports.index = async (req,res)=>{
     const items = await listing.find({});
@@ -25,28 +26,55 @@ module.exports.Search =async(req,res)=>{
     console.log(card);
 };
 
-module.exports.Show = async(req,res)=>{
-    const id = req.params.id;
-    const item = await listing.findById(id).populate({path:"reviews", populate:{path:"author"}}).populate("owner");
-    if(!item){
-        req.flash("error","Venue asked for does not exists")
-        return res.redirect("/home")
-    };
-    console.log(item);
-    res.render("listings/show.ejs", {item})
+module.exports.Show = async (req, res) => {
+    const { id } = req.params;
+
+    const item = await listing.findById(id)
+        .populate("owner")
+        .populate({
+            path: "reviews",
+            populate: {
+                path: "author"
+            }
+        });
+
+    if (!item) {
+        req.flash("error", "Listing does not exist");
+        return res.redirect("/home");
+    }
+
+    res.render("listings/show.ejs", { item });
 };
 
-module.exports.new = async (req,res)=>{
-    let {filename, path} = req.file;
-    // const {title,description,price,location,country,image} = req.body;
-    let add = new listing(req.body.listing);
+module.exports.new = async (req, res) => {
+
+    const { location, country } = req.body.listing;
+    const coordinates = await geocode(location, country);
+    if (!coordinates) {
+        req.flash(
+            "error",
+            "Invalid location. Please enter a valid location and country."
+        );
+        return res.redirect("/home/new");
+    };
+    const add = new listing(req.body.listing);
     add.owner = req.user._id;
-    add.image = {url:path, filename:filename}
+    add.geometry = {
+        type: "Point",
+        coordinates: [
+            coordinates.longitude,
+            coordinates.latitude,
+        ]
+    };
+    if (req.file) {
+        add.image = {
+            url: req.file.path,
+            filename: req.file.filename
+        };
+    };
     await add.save();
-    req.flash("success", "added successfully")
+    req.flash("success", "Listing added successfully");
     res.redirect("/home");
-       console.log(req.file);
-    console.log(req.body);
 };
 
 module.exports.destroy = async (req,res)=>{

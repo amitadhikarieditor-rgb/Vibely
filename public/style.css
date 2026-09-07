@@ -288,3 +288,8 @@ p {
     margin-right: 1rem !important;
     margin-left: 0.25rem !important;
 }
+
+#map{
+    height: 400px;
+    width: 100%;
+}
