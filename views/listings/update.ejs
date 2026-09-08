@@ -10,6 +10,32 @@
      <label for="Description" class="form-label">Change Description</label>
     <textarea class="form-control" id="description" rows="2" cols="30" placeholder="wanna change Description?" name="listing[description]" type="text"><%=edit.description%></textarea>
 
+    <div class="mb-3">
+    <label for="category" class="form-label">Category</label>
+
+    <select name="listing[category]" id="category" class="form-select">
+        <option value="Rooms" <%= edit.category === "Rooms" ? "selected" : "" %>>Rooms</option>
+        <option value="Mountains" <%= edit.category === "Mountains" ? "selected" : "" %>>Mountains</option>
+        <option value="Hiking" <%= edit.category === "Hiking" ? "selected" : "" %>>Hiking</option>
+        <option value="Beach" <%= edit.category === "Beach" ? "selected" : "" %>>Beach</option>
+        <option value="Lakefront" <%= edit.category === "Lakefront" ? "selected" : "" %>>Lakefront</option>
+        <option value="Farmhouses" <%= edit.category === "Farmhouses" ? "selected" : "" %>>Farmhouses</option>
+        <option value="Forest" <%= edit.category === "Forest" ? "selected" : "" %>>Forest</option>
+        <option value="Camping" <%= edit.category === "Camping" ? "selected" : "" %>>Camping</option>
+        <option value="Snow" <%= edit.category === "Snow" ? "selected" : "" %>>Snow</option>
+        <option value="Waterfront" <%= edit.category === "Waterfront" ? "selected" : "" %>>Waterfront</option>
+        <option value="City" <%= edit.category === "City" ? "selected" : "" %>>City</option>
+        <option value="Luxury" <%= edit.category === "Luxury" ? "selected" : "" %>>Luxury</option>
+        <option value="Pool" <%= edit.category === "Pool" ? "selected" : "" %>>Pool</option>
+        <option value="Boats" <%= edit.category === "Boats" ? "selected" : "" %>>Boats</option>
+        <option value="Countryside" <%= edit.category === "Countryside" ? "selected" : "" %>>Countryside</option>
+        <option value="Islands" <%= edit.category === "Islands" ? "selected" : "" %>>Islands</option>
+        <option value="Glamping" <%= edit.category === "Glamping" ? "selected" : "" %>>Glamping</option>
+        <option value="Castles" <%= edit.category === "Castles" ? "selected" : "" %>>Castles</option>
+        <option value="Cabins" <%= edit.category === "Cabins" ? "selected" : "" %>>Cabins</option>
+    </select>
+</div>
+
     <label for="location" class="form-label">Change The Location</label>
     <input class="form-control" id="location" placeholder="Location" name="listing[location]" type="text" value="<%=edit.location%>">
     

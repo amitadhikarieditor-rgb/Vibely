@@ -9,6 +9,7 @@
       <p>Owned by <i><%=item.owner.username%></i></p>
 
       <p><%= item.description %></p>
+      <p> <%= item.category %></p>
       <p><%= item.location %></p>
       <p><%= item.country %></p>
       <p>₹<%= item.price %>/-</p>
@@ -111,13 +112,14 @@
 </div>
 </div>
 
-<!-- Leaflet JS - ONLY ONCE -->
+<!-- documentation -->
 <script
     src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
     crossorigin="">
 </script>
 
+<!-- documentation -->
 <script>
 
     const mapElement = document.getElementById("map");

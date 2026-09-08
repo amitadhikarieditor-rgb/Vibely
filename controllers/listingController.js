@@ -7,6 +7,12 @@ module.exports.index = async (req,res)=>{
     res.render("listings/home.ejs", {items});
 };
 
+module.exports.filter = async(req,res)=>{
+    const query = req.query.category;
+    const items = await listing.find({category:query});
+    res.render("listings/home.ejs", {items});
+};
+
 module.exports.Search =async(req,res)=>{
     let search = String(req.query.q);
     const conditions =[{title:{$regex:search, $options:"i"}},
@@ -48,7 +54,8 @@ module.exports.Show = async (req, res) => {
 
 module.exports.new = async (req, res) => {
 
-    const { location, country } = req.body.listing;
+    const { location, country,category } = req.body.listing;
+    console.log("categories:", category);
     const coordinates = await geocode(location, country);
     if (!coordinates) {
         req.flash(
@@ -72,6 +79,7 @@ module.exports.new = async (req, res) => {
             filename: req.file.filename
         };
     };
+    add.categories = category;
     await add.save();
     req.flash("success", "Listing added successfully");
     res.redirect("/home");
@@ -86,11 +94,14 @@ module.exports.destroy = async (req,res)=>{
 
 module.exports.edit= async (req,res)=>{
      const {title,description,price,location,country,image} = req.body;
+     const { category } = req.body.listing;
+     console.log("category:", category);
      const id = req.params.id;
      const edit = await listing.findByIdAndUpdate(id,req.body.listing, {returnDocument: "after"});
         if(typeof req.file !== "undefined"){
             let {filename, path} = req.file;
             edit.image = {url:path, filename:filename}
+            edit.category = category;
             await edit.save();
         }
         if(!edit){

@@ -18,6 +18,8 @@ const upload = multer({ storage });
 
 Router.get("/home",isLoggedIn,wrapAsync(controller.index));
 
+Router.get("/home/filter/",isLoggedIn,wrapAsync(controller.filter));
+
 
 Router.get("/home/search",isLoggedIn,wrapAsync(controller.Search));
 

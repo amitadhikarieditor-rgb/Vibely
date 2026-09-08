@@ -48,8 +48,32 @@ const listSchema= new schema({
         coordinates: {
             type: [Number],
             required: true
-        }
+        },
     },
+    category: {
+    type: String,
+    enum: [
+        "Rooms",
+        "Mountains",
+        "Hiking",
+        "Beach",
+        "Lakefront",
+        "Farmhouses",
+        "Forest",
+        "Camping",
+        "Snow",
+        "Waterfront",
+        "City",
+        "Luxury",
+        "Pool",
+        "Boats",
+        "Countryside",
+        "Islands",
+        "Glamping",
+        "Castles",
+        "Cabins"
+    ]
+},
     
 });
 
