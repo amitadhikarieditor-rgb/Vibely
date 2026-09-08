@@ -1,14 +1,15 @@
 * {
     color: var(--text-color);
-}
+};
+
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
     min-height: 100vh;
-}
+};
 
 .fa-uncharted {
-    color: #01bbbb;
+    color: #01bbbb !important;
 }
  .navbar {
     background-color: var(--bg-color) !important;
@@ -292,4 +293,10 @@ p {
 #map{
     height: 400px;
     width: 100%;
+    border-radius: 60px;
+}
+
+#themeToggle{
+    border:none;
+    padding:20px;
 }

@@ -1,5 +1,166 @@
 <% layout("layouts/boilerplate") %> 
 
+<style>
+ #filters {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    height: 65px;
+    white-space: nowrap;
+    padding: 5px 5px;
+ }
+ .filters{
+    margin-right: 2rem;
+    margin-left:1rem;
+   text-align: center;
+   opacity:0.4;
+   padding: 5px 5px;
+ }
+ #filters a{
+    text-decoration: none;
+ }
+
+ .filters:hover{
+    opacity:1;
+    text-decoration: 3px underline ;
+    transition: all 0.3s;
+    cursor: pointer;
+ }
+
+ 
+
+ 
+</style>
+
+<div id="filters">
+<a href="/home/filter?category=Trending" class="filter-link">
+    <div class="filters">
+        <i class="fa-solid fa-fire"></i>
+        <p><small>Trending</small></p>
+    </div>
+    </a>
+<a href="/home/filter?category=Rooms" class="filter-link">
+    <div class="filters">
+        <i class="fa-solid fa-bed"></i>
+        <p><small>Rooms</small></p>
+    </div>
+    </a>
+<a href="/home/filter?category=Mountains" class="filter-link">
+    <div class="filters">
+        <i class="fa-solid fa-mountain"></i>
+        <p><small>Mountains</small></p>
+    </div>
+    </a>
+ <a href="/home/filter?category=Hiking" class="filter-link">
+    <div class="filters">
+        <i class="fa-solid fa-person-hiking"></i>
+        <p><small>Hiking</small></p>
+    </div>
+    </a>
+
+   <a href="/home/filter?category=Beach" class="filter-link">
+    <div class="filters">
+        <i class="fa-solid fa-umbrella-beach"></i>
+        <p><small>Beach</small></p>
+    </div>
+</a>
+<a href="/home/filter?category=Lakefront" class="filter-link">
+    <div class="filters">
+        <i class="fa-solid fa-house-tsunami"></i>
+        <p><small>Lakefront</small></p>
+    </div>
+</a>
+<a href="/home/filter?category=Farmhouse" class="filter-link">
+    <div class="filters">
+        <i class="fa-solid fa-house"></i>
+        <p><small>Farmhouses</small></p>
+    </div>
+</a>
+<a href="/home/filter?category=Forest" class="filter-link">
+    <div class="filters">
+        <i class="fa-solid fa-tree"></i>
+        <p><small>Forest</small></p>
+    </div>
+    </a>
+<a href="/home/filter?category=Camping" class="filter-link">
+    <div class="filters">
+        <i class="fa-solid fa-campground"></i>
+        <p><small>Camping</small></p>
+    </div>
+</a>
+<a href="/home/filter?category=Snow" class="filter-link">
+    <div class="filters">
+        <i class="fa-solid fa-snowflake"></i>
+        <p><small>Snow</small></p>
+    </div>
+</a>
+
+<a href="/home/filter?category=Waterfront" class="filter-link">
+    <div class="filters">
+        <i class="fa-solid fa-water"></i>
+        <p><small>Waterfront</small></p>
+    </div>
+</a>
+<a href="/home/filter?category=City" class="filter-link">
+    <div class="filters">
+        <i class="fa-solid fa-city"></i>
+        <p><small>City</small></p>
+    </div>
+    </a>
+<a href="/home/filter?category=Luxury" class="filter-link">
+    <div class="filters">
+        <i class="fa-solid fa-building"></i>
+        <p><small>Luxury</small></p>
+    </div>
+    </a>
+<a href="/home/filter?category=Pool" class="filter-link">
+    <div class="filters">
+        <i class="fa-solid fa-person-swimming"></i>
+        <p><small>Pool</small></p>
+    </div>
+</a>
+<a href="/home/filter?category=Boats" class="filter-link">
+    <div class="filters">
+        <i class="fa-solid fa-ship"></i>
+        <p><small>Boats</small></p>
+    </div>
+</a>
+<a href="/home/filter?category=Countryside" class="filter-link">
+    <div class="filters">
+        <i class="fa-solid fa-wheat-awn"></i>
+        <p><small>Countryside</small></p>
+    </div>
+</a>
+    <div class="filters">
+       <i class="fa-solid fa-i"></i>
+        <p><small>Islands</small></p>
+    </div>
+<a href="/home/filter?category=Glamping" class="filter-link">
+    <div class="filters">
+        <i class="fa-solid fa-tent"></i>
+        <p><small>Glamping</small></p>
+    </div>
+    </a>
+<a href="/home/filter?category=Castles" class="filter-link">
+    <div class="filters">
+        <i class="fa-solid fa-dungeon"></i>
+        <p><small>Castles</small></p>
+    </div>
+    </a>
+<a href="/home/filter?category=Cabins" class="filter-link">
+    <div class="filters">
+        <i class="fa-solid fa-house-chimney-window"></i>
+        <p><small>Cabins</small></p>
+    </div>
+</a>
+
+</div>
+
+
+
+
+
 <div class="row g-0 item-container">
 <% for(let item of items){%>
     <div class="col-12 col-sm-6 col-lg-4" >

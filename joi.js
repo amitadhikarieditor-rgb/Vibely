@@ -10,6 +10,29 @@ const listingSchema = joi.object({
         image: joi.object({
             url:joi.string().uri().allow("",null)
         }),
+        category: joi.string()
+    .valid(
+        "Trending",
+        "Rooms",
+        "Mountains",
+        "Hiking",
+        "Beach",
+        "Lakefront",
+        "Farmhouses",
+        "Forest",
+        "Camping",
+        "Snow",
+        "Waterfront",
+        "City",
+        "Luxury",
+        "Pool",
+        "Boats",
+        "Countryside",
+        "Islands",
+        "Glamping",
+        "Castles",
+        "Cabins"
+    ),
     }).required(),
 });
 
