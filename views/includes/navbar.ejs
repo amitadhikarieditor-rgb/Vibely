@@ -10,20 +10,22 @@
         <a class="nav-link" href="/home">Explore All</a>
         <a class="nav-link" href="/home/new">Add Yours</a>
 
-        <form method="GET" action="/home/search" class="d-flex ms-auto" role="search">
-        <input class="form-control me-3" name="q" type="search" placeholder="Search" aria-label="Search"/>
 
+        <form method="GET" action="/home/search" class="d-flex ms-auto" role="search">
+        <input class=" search-bar form-control me-3" name="q" type="search" placeholder="Search destination" aria-label="Search"/>
         <button class="btn btn-danger search-btn" type="submit">Search</button>
       </form>
+
+      
         <div>
           <%if(!currUser){%>
-            <a href="/" class="btn btn-outline-success sgin-btn">Sgin Up</a>
-          <a href="/login" class="btn btn-outline-danger sgin-btn">login</a>
+            <a href="/" class="btn btn-outline-success sgin-btn ms-auto">Sgin Up</a>
+          <a href="/login" class="btn btn-outline-danger sgin-btn ms-auto">login</a>
           <%}%>
 
           <%if(currUser){%>
           <form action="/logout" method="POST">
-    <button type="submit" class="btn btn-outline-danger sgin-btn">
+    <button type="submit" class="btn btn-outline-danger sgin-btn ms-auto">
         Log out
     </button>
 </form>

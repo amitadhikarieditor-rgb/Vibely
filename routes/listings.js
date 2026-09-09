@@ -16,6 +16,9 @@ const { storage } = require("../config.js");
 const upload = multer({ storage });
 
 
+
+Router.post("/home/:id/wishlist",isLoggedIn,wrapAsync(controller.wishlist));
+
 Router.get("/home",isLoggedIn,wrapAsync(controller.index));
 
 Router.get("/home/filter/",isLoggedIn,wrapAsync(controller.filter));

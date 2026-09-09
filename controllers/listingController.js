@@ -1,17 +1,45 @@
 const listing = require("../models/model.js"); 
 const geocode = require("../utils/geoCode.js");
+const user = require("../models/user.js");
 
-module.exports.index = async (req,res)=>{
+module.exports.index = async (req, res) => {
     const items = await listing.find({});
-    console.log("horha hai")
-    res.render("listings/home.ejs", {items});
+    const currUser = req.user || null;
+    res.render("listings/home.ejs", {
+        items,
+        currUser
+    });
 };
 
 module.exports.filter = async(req,res)=>{
     const query = req.query.category;
     const items = await listing.find({category:query});
-    res.render("listings/home.ejs", {items});
+    if(items.length === 0){
+        req.flash("error", "there is no added items in this category Try adding yours");
+        return res.redirect("/home");
+    }else{
+        res.render("listings/home.ejs", {items});
+    }
+    
 };
+
+
+// module.exports.trending = async (req, res) => {
+
+//     const items = await listing.aggregate([
+//         {
+//             $addFields: {
+//                 reviewCount: { $size: "$reviews" }
+//             }
+//         },
+//         {
+//             $sort: {
+//                 reviewCount: -1
+//             }
+//         }
+//     ]);
+//     res.render("listings/home.ejs", { items });
+// };
 
 module.exports.Search =async(req,res)=>{
     let search = String(req.query.q);
@@ -121,4 +149,23 @@ module.exports.GetEdit = async(req,res)=>{
         return res.redirect("/home")
     };
     res.render("listings/update.ejs", {edit});
+};
+
+module.exports.wishlist = async (req, res) => {
+
+    const listingId = req.params.id;
+    const currentUser = await user.findById(req.user._id);
+    const alreadyAdded = currentUser.wishlist.some(
+        id => id.toString() === listingId
+    );
+    if (alreadyAdded) {
+        currentUser.wishlist.pull(listingId);
+    } else {
+        currentUser.wishlist.push(listingId);
+    }
+    await currentUser.save();
+    res.json({
+        success: true,
+        added: !alreadyAdded
+    });
 };

@@ -101,5 +101,35 @@ themeToggle.addEventListener("click", () => {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);</script>
 
+<script>
+    const wishlistButtons = document.querySelectorAll(".wishlist-btn");
+
+wishlistButtons.forEach((button) => {
+
+    button.addEventListener("click", async () => {
+
+        const id = button.dataset.id;
+
+        const response = await fetch(`/home/${id}/wishlist`, {
+            method: "POST"
+        });
+
+        const data = await response.json();
+
+        if (!data.success) return;
+
+        const icon = button.querySelector("i");
+
+        if (data.added) {
+            icon.classList.remove("fa-regular");
+            icon.classList.add("fa-solid");
+        } else {
+            icon.classList.remove("fa-solid");
+            icon.classList.add("fa-regular");
+        }
+    });
+
+});
+</script>
 </body>
 </html>

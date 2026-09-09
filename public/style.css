@@ -299,4 +299,95 @@ p {
 #themeToggle{
     border:none;
     padding:20px;
+};
+
+ #filters {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    height: 65px;
+    white-space: nowrap;
+    padding: 5px 5px;
+ }
+ .filters{
+    margin-right: 2rem;
+    margin-left:1rem;
+   text-align: center;
+   opacity:0.4;
+   padding: 5px 5px;
+ }
+ #filters a{
+    text-decoration: none;
+ }
+
+ .filters:hover{
+    opacity:1;
+    text-decoration: 3px underline ;
+    transition: all 0.3s;
+    cursor: pointer;
+ }
+
+.tax-button {
+    border: 2px solid;
+    border-radius: 4rem;
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    opacity:0.6;
 }
+.tax-button:hover{
+    opacity:1;
+    cursor:pointer;
+}
+.tax-button .form-check-input {
+    order: 2;
+    margin-left: 0;
+}
+
+.tax-button .form-check-label {
+    order: 1;
+}
+
+.tax-info{
+    display:none;
+}
+.filter-btn{
+     border: 2px solid;
+     margin-right: 1rem;
+     padding:10px;
+     border-radius:3rem;
+     opacity:0.7;
+}
+.filter-btn:hover{
+    opacity:1;
+    cursor:pointer;
+}
+
+.filter-btn p{
+    margin-bottom: 0px;
+}
+
+.wishlist-btn{
+    background: none;
+    border:none;
+    padding:0;
+    margin-right: 10px;
+}
+.wishlist-btn i {
+    font-size: 20px;
+    transition: 0.1s ease;
+}
+
+.wishlist-btn:hover i {
+    transform: scale(1.15);
+}
+
+#title{
+    margin-left: 13px;
+}
+
+.search-bar{
+     border-radius:3rem !important;
+};
