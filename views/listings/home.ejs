@@ -23,17 +23,56 @@
 
  .filters:hover{
     opacity:1;
-    text-decoration: 3px underline ;
+    text-decoration: 2px underline ;
     transition: all 0.3s;
     cursor: pointer;
  }
 
- 
+.tax-button {
+    border: 2px solid;
+    border-radius: 4rem;
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    opacity:0.6;
+}
+.tax-button:hover{
+    opacity:1;
+    cursor:pointer;
+}
+.tax-button .form-check-input {
+    order: 2;
+    margin-left: 0;
+}
 
- 
+.tax-button .form-check-label {
+    order: 1;
+}
+
+.tax-info{
+    display:none;
+}
+.filter-btn{
+     border: 2px solid;
+     margin-right: 1rem;
+     padding:10px;
+     border-radius:3rem;
+     opacity:0.7;
+}
+.filter-btn:hover{
+    opacity:1;
+    cursor:pointer;
+}
+
+.filter-btn p{
+    margin-bottom: 0px;
+}
+
+
+
 </style>
-
-<div id="filters">
+<div id="filters" class="filters-wrapper">
 <a href="/home/filter?category=Trending" class="filter-link">
     <div class="filters">
         <i class="fa-solid fa-fire"></i>
@@ -71,7 +110,7 @@
         <p><small>Lakefront</small></p>
     </div>
 </a>
-<a href="/home/filter?category=Farmhouse" class="filter-link">
+<a href="/home/filter?category=Farmhouses" class="filter-link">
     <div class="filters">
         <i class="fa-solid fa-house"></i>
         <p><small>Farmhouses</small></p>
@@ -133,7 +172,7 @@
     </div>
 </a>
     <div class="filters">
-       <i class="fa-solid fa-i"></i>
+       <i class="fa-solid fa-earth-oceania"></i>
         <p><small>Islands</small></p>
     </div>
 <a href="/home/filter?category=Glamping" class="filter-link">
@@ -154,13 +193,24 @@
         <p><small>Cabins</small></p>
     </div>
 </a>
-
 </div>
 
+ <!-- <hr/> -->
 
+<div class="d-flex justify-content-end mt-2 ">
+    <div class="filter-btn d-flex">
+        <p>filters</p>
+    <i class="fa-solid fa-sliders mt-1 ms-4 "></i>
 
-
-
+    
+</div>
+    <div class="tax-button form-check form-switch">
+        <input id="toggle"class="form-check-input"type="checkbox"role="switch">
+        <label class="form-check-label" for="toggle">
+            Show Taxes Percentage
+        </label>
+    </div>
+</div>
 <div class="row g-0 item-container">
 <% for(let item of items){%>
     <div class="col-12 col-sm-6 col-lg-4" >
@@ -168,26 +218,34 @@
 <div class="card" >
   <div class="card-body">
   
-            <a href="/home/<%=item._id%>/show">
-            <img loading="lazy" class="card-img-top" src="<%= item.image.url %>" alt="<%= item.image %>">
-            <h3><%= item.title %></h3>
+      <div class="d-flex justify-content-between">
+        <h3 id="title"><%= item.title %></h3>
+        <button
+    class="wishlist-btn"
+    data-id="<%= item._id %>"
+    type="button"
+>
+    <% if (currUser.wishlist.some(id => id.toString() === item._id.toString())) { %>
+        <i class="fa-solid fa-heart"></i>
+    <% } else { %>
+        <i class="fa-regular fa-heart"></i>
+    <% } %>
+</button>
+  </div>
+ <a href="/home/<%=item._id%>/show">
+  <img loading="lazy" class="card-img-top" src="<%= item.image.url %>" alt="<%= item.image %>">
+
             <%= item.description %>
             <br/>
             <%= item.location %>
             <br/>
             <%= item.country %>
             <br/>
-             &#8377;<%= item.price.toLocaleString("en-IN") %>/- night
+             &#8377;<%= item.price.toLocaleString("en-IN") %>/- night &nbsp;
+             <i class="tax-info">
+                +18% GST
+             </i>
         </a>
-    
-    <!-- <form method="POST" action="/home/<%=item._id%>/edit?_method=PATCH">
-    <button class="btn btn-dark" type="submit">Edit</button>
-</form>
-</form>
-<br/>
-        <form method="POST" action="/home/<%=item._id%>/Delete?_method=DELETE">
-            <button class="btn btn-outline-danger" type="submit">Delete</button>
-        </form> -->
   </div>
 </div>
 </div> 
@@ -195,12 +253,29 @@
 <%}%>
 </div>
 <br/>
-    <form method="get" Action="/home/new">
+    <!-- <form method="get" Action="/home/new">
         
         <a class="btn btn-outline-danger" href="/home/new">
             Create new list
         </a> 
-    </form>
+    </form> -->
 
 
+    <script>
+    const taxSwitch = document.getElementById("toggle");
+
+taxSwitch.addEventListener("click", () => {
+
+    const taxInfo = document.getElementsByClassName("tax-info");
+
+    for (let info of taxInfo) {
+
+        if (info.style.display !== "inline") {
+            info.style.display = "inline";
+        } else {
+            info.style.display = "none";
+        }
+    }
+});
+    </script>
 

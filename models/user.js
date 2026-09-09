@@ -7,12 +7,15 @@ const userSchema = new schema({
         type:String,
         required:true
     },
+    wishlist:[
+        {
+        type:schema.Types.ObjectId,
+        ref:"listing"
+    }
+]
 });
 
-userSchema.plugin(passportLocalMongoose);
-
-const user = mongoose.model("user",userSchema);
 //authomatically added the salt and hashing of password
-
-
+userSchema.plugin(passportLocalMongoose);
+const user = mongoose.model("user",userSchema);
 module.exports = user;
