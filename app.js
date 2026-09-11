@@ -5,6 +5,7 @@ const express = require("express");
 const app= express();
 const path = require("path");
 const mongoose = require("mongoose");
+const mongoStore = require("connect-mongo").default;
 const methodOverride= require("method-override");
 const listing = require("./models/model.js"); 
 const review = require("./models/review.js")
@@ -30,8 +31,17 @@ app.use(methodOverride("_method"));
 
 app.engine("ejs",ejsMate);
 
+
+const store = mongoStore.create({
+    mongoUrl: process.env.DB_URL,
+    crypto: {
+        secret: process.env.SECRET,
+    }
+});
+
 const sessionOption = {
-    secret : "amit adhikari is the author",
+    store:store,
+    secret : process.env.SECRET,
     resave : false,
     saveUninitialized : true,
     cookie:{
@@ -68,11 +78,6 @@ const listingRouter = require("./routes/listings.js");
 const reviewRouter = require("./routes/reviews.js");
 const userRouter = require("./routes/users.js");
 
-
-//mongoose connect
-async function main(){
-    await mongoose.connect("mongodb://127.0.0.1:27017/listings")
-}
 //mongoose connect function
 main().then((res)=>{
     console.log(res,"database ho gya connect");
@@ -87,6 +92,11 @@ app.listen(3030, (req,res)=>{
 app.use("/", listingRouter);
 app.use("/", reviewRouter);
 app.use("/", userRouter);
+
+//mongoose connect
+async function main(){
+    await mongoose.connect(process.env.DB_URL);
+}
 
 
 //this is the error handler applier for all the routes 
