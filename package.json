@@ -1,4 +1,7 @@
 {
+  "engines":{
+       "node":"26.8,2"
+  },
   "name": "vibely",
   "version": "1.0.0",
   "description": "",
