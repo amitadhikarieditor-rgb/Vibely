@@ -5,23 +5,10 @@
 
     <div class="c">
       <img class="img card-img-top" style="height:350px" src="<%= item.image.url %>">
-
       <p>Owned by <i><%=item.owner.username%></i></p>
 
       <div class="wishlist mb-2 d-flex justify-content-between">
         <%= item.description %>
-
-        <button
-    class="wishlist-btn"
-    data-id="<%= item._id %>"
-    type="button"
->
-    <% if (currUser.wishlist.some(id => id.toString() === item._id.toString())) { %>
-        <i class="fa-solid fa-heart"></i>
-    <% } else { %>
-        <i class="fa-regular fa-heart"></i>
-    <% } %>
-</button>
        
       </div>
       <p> A <i><%= item.category %> </i>Product</p>

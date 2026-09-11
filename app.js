@@ -20,6 +20,16 @@ const user = require("./models/user.js")
 const multer = require("multer");
 const upload = multer({dest: "uploads/"});
 
+app.use(express.urlencoded({extended:true}));
+
+app.use(express.static(path.join(__dirname, "public")));
+
+app.set("view engine", "ejs");
+
+app.use(methodOverride("_method"));
+
+app.engine("ejs",ejsMate);
+
 const sessionOption = {
     secret : "amit adhikari is the author",
     resave : false,
@@ -42,7 +52,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-//middleware for flash session
+//saving flash and users in locala for daynamic usage!!
 app.use((req,res,next)=>{
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
@@ -58,18 +68,6 @@ const listingRouter = require("./routes/listings.js");
 const reviewRouter = require("./routes/reviews.js");
 const userRouter = require("./routes/users.js");
 
-
-
-
-app.use(express.urlencoded({extended:true}));
-
-app.use(express.static(path.join(__dirname, "public")));
-
-app.set("view engine", "ejs");
-
-app.use(methodOverride("_method"));
-
-app.engine("ejs",ejsMate);
 
 //mongoose connect
 async function main(){
