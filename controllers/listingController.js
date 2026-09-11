@@ -11,19 +11,6 @@ module.exports.index = async (req, res) => {
     });
 };
 
-module.exports.filter = async(req,res)=>{
-    const query = req.query.category;
-    const items = await listing.find({category:query});
-    if(items.length === 0){
-        req.flash("error", "there is no added items in this category Try adding yours");
-        return res.redirect("/home");
-    }else{
-        res.render("listings/home.ejs", {items});
-    }
-    
-};
-
-
 // module.exports.trending = async (req, res) => {
 
 //     const items = await listing.aggregate([
@@ -46,7 +33,8 @@ module.exports.Search =async(req,res)=>{
     const conditions =[{title:{$regex:search, $options:"i"}},
         {country:{$regex:search, $options:"i"}},
         {location:{$regex:search, $options:"i"}},
-        {description:{$regex:search, $options:"i"}}];
+        {description:{$regex:search, $options:"i"}},
+        {category:{$regex:search, $options:"i"}}];
     if(!isNaN(Number(search))){
         conditions.push({price:Number(search)});
     };
@@ -151,13 +139,22 @@ module.exports.GetEdit = async(req,res)=>{
     res.render("listings/update.ejs", {edit});
 };
 
+module.exports.filter = async(req,res)=>{
+    const query = req.query.category;
+    const items = await listing.find({category:query});
+    if(items.length === 0){
+        req.flash("error", "there is no added items in this category Try adding yours");
+        return res.redirect("/home");
+    }else{
+        res.render("listings/home.ejs", {items});
+    }
+};
+
 module.exports.wishlist = async (req, res) => {
 
     const listingId = req.params.id;
     const currentUser = await user.findById(req.user._id);
-    const alreadyAdded = currentUser.wishlist.some(
-        id => id.toString() === listingId
-    );
+    const alreadyAdded = currentUser.wishlist.some(id => id.toString() === listingId);
     if (alreadyAdded) {
         currentUser.wishlist.pull(listingId);
     } else {

@@ -8,9 +8,8 @@ body {
     min-height: 100vh;
 };
 
-.fa-uncharted {
-    color: #01bbbb !important;
-}
+
+
  .navbar {
     background-color: var(--bg-color) !important;
 }
@@ -124,8 +123,8 @@ body {
     /* background-color:#C9B59C ; */
     max-width: 900px;
     padding: 30px; 
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,1);
+    border-radius: 30px;
+    box-shadow: 0 2px 4px rgb(67, 66, 66);
     margin-bottom: 40px !important;
     height:750px !important;
     margin:2px auto;
@@ -390,4 +389,20 @@ p {
 
 .search-bar{
      border-radius:3rem !important;
-};
+}
+
+.wishlist-btn .fa-solid{
+    color: red !important;
+}
+
+.wishlist-btn .fa-regular {
+    color: black;
+}
+
+#fevicon{
+    color: #01bbbb;
+}
+
+.fa-uncharted {
+    color: #01bbbb !important;
+}

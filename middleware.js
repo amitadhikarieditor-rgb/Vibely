@@ -2,19 +2,9 @@ const listing = require("./models/model");
 const review = require("./models/review");
 const user = require("./models/user");
 
-// module.exports.isLoggedIn= (req,res,next)=>{
-//     if(!req.isAuthenticated()){
-//         console.log(req.originalUrl);
-//         req.session.redirectUrl = req.originalUrl;
-//         req.flash("error","user must be sgined Up or logged in for wondering");
-//         return res.redirect("/login");
-//     };
-//     next();
-// };
-
 module.exports.isLoggedIn = (req, res, next) => {
-    console.log("Authenticated:", req.isAuthenticated());
-    console.log("User:", req.user);
+    // console.log("Authenticated:", req.isAuthenticated());
+    // console.log("User:", req.user);
     if (!req.isAuthenticated()) {
         // console.log(req.originalUrl);
         req.session.redirectUrl = req.originalUrl;
