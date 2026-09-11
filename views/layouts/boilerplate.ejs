@@ -61,8 +61,17 @@ const themeToggle = document.getElementById("themeToggle");
 const savedTheme = localStorage.getItem("theme");
 
 if (savedTheme === "dark") {
+
     document.documentElement.setAttribute("data-theme", "dark");
+
     themeToggle.innerText = "☀️";
+
+} else {
+
+    document.documentElement.removeAttribute("data-theme");
+
+    themeToggle.innerText = "🌙";
+
 }
 
 themeToggle.addEventListener("click", () => {
@@ -84,7 +93,7 @@ themeToggle.addEventListener("click", () => {
 
         localStorage.setItem("theme", "dark");
 
-        themeToggle.innerText = "🌙";
+        themeToggle.innerText = "☀️";
     }
 });
             </script>
