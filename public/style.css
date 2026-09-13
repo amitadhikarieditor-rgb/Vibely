@@ -412,3 +412,9 @@ p {
     color: var(--color)!important;
     
 };
+
+
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
+}
