@@ -393,10 +393,10 @@ p {
 .search-bar{
      border-radius:2rem !important;
      height:10px;
-     margin-top:10px;
+     margin-top:3px;
      width:300px;
      border:2px solid rgb(192, 192, 192);
-     padding:20px;
+     padding:15px;
      text-align:center;
      background-color: var(--bg-color);
 }
@@ -404,7 +404,7 @@ p {
 .search-bar:focus {
     outline: none;
     box-shadow: none;
-    border-color: #dee2e6;
+    border-color: #7695b7;
 }
 
 .search-bar:focus::placeholder {
@@ -413,8 +413,8 @@ p {
 
 .search-btn{
     margin-left:10px;
-    height:40px;
-    margin-top:10px;
+    height:35px;
+    margin-top:2px;
 }
 
 
