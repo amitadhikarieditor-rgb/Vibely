@@ -69,6 +69,11 @@ body {
     margin-left:3rem;
     font-weight: 1000;
     color: var(--text-color) !important;
+    opacity:1;
+}
+
+.nav-link:hover{
+    opacity:0.5;
 }
 
 .social-area i{
@@ -150,9 +155,6 @@ label{
 .c .card-img-top{
     border-radius: 2rem;
 }
-.search-btn{
-    margin-right:30px
-}
 .back-btn{
      font-size: 15px !important;
      margin-left:20px;
@@ -190,6 +192,7 @@ label{
     margin-bottom: 40px !important;
     height:556px !important;
     margin:2px auto;
+    background-color: var(--bg-color) ;
 }
 
 .page .new{
@@ -388,8 +391,32 @@ p {
 }
 
 .search-bar{
-     border-radius:3rem !important;
+     border-radius:2rem !important;
+     height:10px;
+     margin-top:10px;
+     width:300px;
+     border:2px solid rgb(192, 192, 192);
+     padding:20px;
+     text-align:center;
+     background-color: var(--bg-color);
 }
+
+.search-bar:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: #dee2e6;
+}
+
+.search-bar:focus::placeholder {
+    color: transparent;
+}
+
+.search-btn{
+    margin-left:10px;
+    height:40px;
+    margin-top:10px;
+}
+
 
 .wishlist-btn .fa-solid{
     color: red !important;
@@ -410,5 +437,4 @@ p {
 .category{
     background-color: var(--bg-color)!important;
     color: var(--color)!important;
-    
 };
