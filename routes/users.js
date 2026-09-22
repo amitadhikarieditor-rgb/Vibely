@@ -60,5 +60,4 @@ Router.post("/logout",isLoggedIn,(req,res,next)=>{
         res.redirect("/login");
     });
 });
-
-module.exports = Router;
+module.exports = Router; 

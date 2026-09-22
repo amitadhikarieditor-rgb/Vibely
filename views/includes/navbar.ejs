@@ -9,23 +9,27 @@
         <a class="nav-link active" aria-current="page" href="/home">Home</a>
         <a class="nav-link" href="/home">Explore All</a>
         <a class="nav-link" href="/home/new">Add Yours</a>
+        
 
-
+      <%if(currUser){%>
         <form method="GET" action="/home/search" class="d-flex ms-auto" role="search">
-        <input class=" search-bar form-control me-3" name="q" type="search" placeholder="Search destination" aria-label="Search"/>
+        <input id="search-bar" class="search-bar" name="q" type="search" placeholder="Search destination" aria-label="Search"/>
         <button class="btn btn-danger search-btn" type="submit">Search</button>
       </form>
+      <%}%>
 
-      
-        <div>
+
+        <div class="d-flex ms-auto">
           <%if(!currUser){%>
             <a href="/" class="btn btn-outline-success sgin-btn ms-auto">Sgin Up</a>
+            &nbsp;&nbsp;&nbsp;
           <a href="/login" class="btn btn-outline-danger sgin-btn ms-auto">login</a>
           <%}%>
 
+          
           <%if(currUser){%>
           <form action="/logout" method="POST">
-    <button type="submit" class="btn btn-outline-danger sgin-btn ms-auto">
+    <button  type="submit" class="btn btn-outline-danger sgin-btn mt-2">
         Log out
     </button>
 </form>
