@@ -1,28 +1,55 @@
-  <% layout("layouts/boilerplate") %>
-       <a href="/home" class="btn btn-danger back-btn">
-        Go back to home
-       </a>
+<% layout("layouts/boilerplate") %>
+<% if (card.length > 0) { %>
+<a href="/home" class="btn btn-success back-btn">
+    Go back to home
+</a>
+<%}%>
+
 <div class="row g-0 item-container">
-         <% for(let item of card) { %>
-    <div class="col-12 col-sm-6 col-lg-4">
-    <div class="card">
-    <div class="card-body">
 
-        <a href="/home/<%=item._id%>/show">
-            <h1><%= item.title %></h1>
-        <%= item.description %>
-        <img class="card-img-top" src="<%= item.image.url %>">
-         <%= item.location %>
-         <br/>
-         <%= item.country %>
-         <br/>
-        ₹<%= item.price %>/-
-        <br/>
-        </a>
-      </div>
-    </div>
-    </div>
-  <% } %>
+    <% if (card.length > 0) { %>
 
-    </div>
-    </div>
+        <% for (let item of card) { %>
+
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+
+                        <a href="/home/<%= item._id %>/show">
+                            <h1><%= item.title %></h1>
+
+                            <%= item.description %>
+
+                            <img class="card-img-top" src="<%= item.image.url %>">
+
+                            <%= item.location %>
+                            <br>
+
+                            <%= item.country %>
+                            <br>
+
+                            ₹<%= item.price %>/-
+                            <br>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+
+        <% } %>
+
+    <% } else { %>
+
+        <div id="error-page" role="alert">
+            <div class="heading">
+                <strong>No such listing found</strong>
+                
+            </div>
+            <a href="/home" class="btn btn-danger back-btn">
+    Go back to home
+</a>
+        </div>
+
+    <% } %>
+
+</div>
