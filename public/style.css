@@ -466,19 +466,14 @@ body {
 #error-page .heading {
     margin-bottom: 20px;
 }
-
 .navbar-container{
     background: rgba(239, 239, 239, 0.25) !important;
     backdrop-filter: blur(5px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
-
     border: 1px solid rgba(241, 239, 239, 0.35);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
-
     display: flex !important;
     align-items: center !important;
-
-
     border-radius: 20% !important;
     padding: 10px !important;
     margin-top: 13px !important;
@@ -488,18 +483,14 @@ body {
     z-index: 1;
     width: 89%;
 }
-
 .navbar-collapse {
     background: rgba(239, 237, 237, 0.25);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-
     border-radius: 20px;
     padding: 15px;
-
     /* box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12); */
 }
-
 @media (max-width: 1024px){
     .navbar-container {
         border-radius: 20px !important;
@@ -509,11 +500,9 @@ body {
     background: rgba(245, 244, 244, 0.01);
     backdrop-filter: blur(100px);
     -webkit-backdrop-filter: blur(20px);
-
     border-radius: 20px;
     padding: 8px;
     height: auto;
-    
 }
 }
 
@@ -527,35 +516,27 @@ body {
     background: rgba(245, 244, 244, 0.01);
     backdrop-filter: blur(100px);
     -webkit-backdrop-filter: blur(20px);
-
     border-radius: 20px;
     padding: 8px;
     height: 60px;
     
 }
 }
-
-
-
 @media (max-width: 991px) {
 
     .navbar-container {
         border-radius: 25px !important;
         height: auto;
     }
-
     .navbar-collapse {
         background: rgba(238, 237, 237, 0.05);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
-
         border-radius: 20px;
         padding: 10px;
         margin-top: 10px;
-
         box-shadow: 0 8px 25px rgba(217, 216, 216, 0.12);
     }
-
     .navbar-nav {
         gap: 5px;
     }
