@@ -56,12 +56,16 @@ Router.patch("/home/:id/edit", isLoggedIn, upload.single("image"), validateListi
 
 Router.delete("/home/:id/delete", isOwner, wrapAsync( controller.destroy));
 
+Router.get("/home/Privacy", controller.Privacy);
+
+Router.get("/home/Terms", controller.Terms);
 
 
-Router.use((err,req,res,next)=>{
-    let {status=500,message="something went wrong"}=err;
-    res.status(status).render("listings/error.ejs", {message});
-});
+
+// Router.use((err,req,res,next)=>{
+//     let {status=500,message="something went wrong"}=err;
+//     res.status(status).render("listings/error.ejs", {message});
+// });
 
 
 

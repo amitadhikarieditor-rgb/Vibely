@@ -166,3 +166,12 @@ module.exports.wishlist = async (req, res) => {
         added: !alreadyAdded
     });
 };
+
+
+module.exports.Privacy = (req, res) => {
+    res.render("listings/Privacy.ejs");
+};
+
+module.exports.Terms = (req, res) => {
+    res.render("listings/Terms.ejs");
+};
