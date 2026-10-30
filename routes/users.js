@@ -10,11 +10,10 @@ const passport = require("passport");
 const { isLoggedIn } = require("../middleware.js");
 const { saveRedirectUrl } = require("../middleware.js");
 
-//sginup route "/"
 Router.get("/", (req,res)=>{
     res.render("listings/sginup.ejs")
 });
-//saving the credential to the users DB
+
 Router.post("/", async (req,res)=>{
     try{
     let {username,email,password} = req.body;
@@ -35,7 +34,7 @@ Router.post("/", async (req,res)=>{
     }
 });
 
-//login route "/"
+
 Router.get("/login", (req,res)=>{
     res.render("listings/login.ejs")
 });
